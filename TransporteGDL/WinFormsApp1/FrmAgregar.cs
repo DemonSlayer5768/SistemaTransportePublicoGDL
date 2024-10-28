@@ -8,7 +8,7 @@ namespace WinFormsApp1
 {
     public partial class FrmAgregar : Form
     {
-        private string rutaArchivo = "C:\\Users\\jjaim\\source\\repos\\WinFormsApp1\\WinFormsApp1\\STPMG.json";
+        private string rutaArchivo = "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json";
 
         public FrmAgregar()
         {

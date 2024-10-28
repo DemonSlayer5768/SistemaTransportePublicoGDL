@@ -122,14 +122,14 @@ namespace My_FrmInicio
             // agregarEstacionToolStripMenuItem
             // 
             agregarEstacionToolStripMenuItem.Name = "agregarEstacionToolStripMenuItem";
-            agregarEstacionToolStripMenuItem.Size = new Size(164, 22);
+            agregarEstacionToolStripMenuItem.Size = new Size(180, 22);
             agregarEstacionToolStripMenuItem.Text = "Agregar Estacion";
             agregarEstacionToolStripMenuItem.Click += agregarEstacionToolStripMenuItem_Click;
             // 
             // eliminarEstacionToolStripMenuItem
             // 
             eliminarEstacionToolStripMenuItem.Name = "eliminarEstacionToolStripMenuItem";
-            eliminarEstacionToolStripMenuItem.Size = new Size(164, 22);
+            eliminarEstacionToolStripMenuItem.Size = new Size(180, 22);
             eliminarEstacionToolStripMenuItem.Text = "Eliminar Estacion";
             eliminarEstacionToolStripMenuItem.Click += eliminarEstacionToolStripMenuItem_Click;
             // 

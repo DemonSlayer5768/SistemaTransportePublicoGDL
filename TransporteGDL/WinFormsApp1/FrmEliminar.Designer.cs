@@ -124,7 +124,7 @@
             MinimumSize = new Size(537, 405);
             Name = "FrmEliminar";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Eliminar Estacion";
             ResumeLayout(false);
             PerformLayout();
         }

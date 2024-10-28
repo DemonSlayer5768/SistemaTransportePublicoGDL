@@ -11,6 +11,15 @@
     {
       "Nombre": "Periférico Norte",
       "Lineas": [
+        "Linea 1",
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Dermatológico",
+      "Lineas": [
         "Linea 1"
       ],
       "ExtraCadena": "",
@@ -123,7 +132,7 @@
       "ExtraNumerico": 0
     },
     {
-      "Nombre": "Patria Sur",
+      "Nombre": "Patria",
       "Lineas": [
         "Linea 1"
       ],
@@ -139,7 +148,7 @@
       "ExtraNumerico": 0
     },
     {
-      "Nombre": "Tesoro",
+      "Nombre": "Santuario Mártires de Cristo Rey",
       "Lineas": [
         "Linea 1"
       ],
@@ -149,7 +158,8 @@
     {
       "Nombre": "Periférico Sur",
       "Lineas": [
-        "Linea 1"
+        "Linea 1",
+        "Mi Macro Periferico"
       ],
       "ExtraCadena": "",
       "ExtraNumerico": 0
@@ -157,8 +167,7 @@
     {
       "Nombre": "Plaza Universidad",
       "Lineas": [
-        "Linea 2",
-        "Linea 3"
+        "Linea 2"
       ],
       "ExtraCadena": "",
       "ExtraNumerico": 0
@@ -166,7 +175,8 @@
     {
       "Nombre": "San Juan de Dios",
       "Lineas": [
-        "Linea 2"
+        "Linea 2",
+        "Mi Macro Calzada"
       ],
       "ExtraCadena": "",
       "ExtraNumerico": 0
@@ -238,7 +248,8 @@
     {
       "Nombre": "Periférico Belenes",
       "Lineas": [
-        "Linea 3"
+        "Linea 3",
+        "Mi Macro Periferico"
       ],
       "ExtraCadena": "",
       "ExtraNumerico": 0
@@ -276,7 +287,7 @@
       "ExtraNumerico": 0
     },
     {
-      "Nombre": "Normal",
+      "Nombre": "La Normal",
       "Lineas": [
         "Linea 3"
       ],
@@ -285,6 +296,14 @@
     },
     {
       "Nombre": "Santuario",
+      "Lineas": [
+        "Linea 3"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Guadalajara Centro",
       "Lineas": [
         "Linea 3"
       ],
@@ -342,15 +361,529 @@
     {
       "Nombre": "Lázaro Cárdenas",
       "Lineas": [
+        "Linea 3",
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Central Camionera",
+      "Lineas": [
         "Linea 3"
       ],
       "ExtraCadena": "",
       "ExtraNumerico": 0
     },
     {
-      "Nombre": "Central de Autobuses",
+      "Nombre": "Mirador",
       "Lineas": [
-        "Linea 3"
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Huentitán",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Zoológico",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Independencia Norte",
+      "Lineas": [
+        "Mi Macro Calzada",
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "San Patricio",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Igualdad",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Monumental",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Monte Olivete",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Circunvalación",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Ciencias de la Salud",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Juan Álvarez",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Alameda",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Bicentenario",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "La Paz",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Niños Héroes",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Agua Azul",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Ciprés",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Héroes de Nacozari",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "El Deán",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Zona Industrial",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "López de Legazpi",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Clemente Orozco",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Artes Plásticas",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Esculturas",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Fray Amgélico",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Las Juntas",
+      "Lineas": [
+        "Mi Macro Calzada"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "5 de Mayo",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Acueducto",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Agrícola",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Centro Cultural Universitario",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Chapalita Inn",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Ciudad Granja",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Ciudad Judicial",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Constitución",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "El Batán",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "El Briseño",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "El Colli",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Estadio Chivas",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Felipe Ruvalcaba",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "La Cantera",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "La Tuzania",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "López Mateos",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Mariano Otero",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Miramar",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Parque Metropolitano",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "San Isidro",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "San Juan de Ocotán",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Santa Margarita",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Tabachines",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Vallarta",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Barranca de Huentitán",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "La Experiencia",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Lomas del Paraíso",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Rancho Nuevo",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Zoológico Guadalajara",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "8 de Julio",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Adolf Horn",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Artesanos",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Carretera a Chapala",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "ITESO",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Las Pintas",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "San Sebastianito",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Terminal Sur de Autobuses",
+      "Lineas": [
+        "Mi Macro Periferico"
+      ],
+      "ExtraCadena": "",
+      "ExtraNumerico": 0
+    },
+    {
+      "Nombre": "Toluquilla",
+      "Lineas": [
+        "Mi Macro Periferico"
       ],
       "ExtraCadena": "",
       "ExtraNumerico": 0

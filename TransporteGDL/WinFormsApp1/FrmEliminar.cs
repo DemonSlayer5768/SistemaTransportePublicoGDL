@@ -12,7 +12,7 @@ namespace WinFormsApp1
     public partial class FrmEliminar : Form
     {
         private List<Estacion> estaciones;
-        private string rutaArchivo = "C:\\Users\\jjaim\\source\\repos\\WinFormsApp1\\WinFormsApp1\\STPMG.json";
+        private string rutaArchivo = "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json";
 
         public FrmEliminar()
         {
@@ -182,9 +182,10 @@ namespace WinFormsApp1
             }
         }
 
+        private void FrmEliminar_Load(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 
     // Clase Estacion

@@ -14,50 +14,53 @@ namespace My_FrmInicio
             CargarDatos();
         }
 
-        // Método para cargar datos del archivo JSON y configurar el ComboBox
+        // Metodo para cargar datos del archivo JSON y configurar el ComboBox
+
         private void CargarDatos()
         {
-            string rutaArchivo = "C:\\Users\\jjaim\\source\\repos\\WinFormsApp1\\WinFormsApp1\\STPMG.json";
+           string rutaArchivo = "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json";
 
-            EstacionesWrapper wrapper = LeerArchivoJson(rutaArchivo);
+           EstacionesWrapper wrapper = LeerArchivoJson(rutaArchivo);
 
-            if (wrapper != null && wrapper.Estaciones.Any())
-            {
-                estaciones = wrapper.Estaciones;
-                //List<My_FrmInicio.Estacion> estaciones = wrapper.Estaciones;
-                //Ordenamientos.OrdenarPorInsercion(estaciones);
+           if (wrapper != null && wrapper.Estaciones.Any())
+           {
+               estaciones = wrapper.Estaciones;
 
+               cmb_Lineas.Items.Clear(); // Limpiar ComboBox antes de llenarlo
+               cmb_Lineas.Items.Add("Todas"); // agregar item para mostrar todas las estaciones
 
-                cmb_Lineas.Items.Clear(); // Limpiar ComboBox antes de llenarlo
-                cmb_Lineas.Items.Add("Todas"); // agregar item para mostrar todas las estaciones
+               // Usamos HashSet para evitar duplicados de llneas
+               HashSet<string> lineasUnicas = new HashSet<string>();
 
-                // Usamos HashSet para evitar duplicados de líneas
-                HashSet<string> lineasUnicas = new HashSet<string>();
+               foreach (var estacion in estaciones)
+               {
+                   foreach (var linea in estacion.Lineas)
+                   {
+                       lineasUnicas.Add(linea);
+                   }
+               }
 
-                foreach (var estacion in estaciones)
-                {
-                    foreach (var linea in estacion.Lineas)
-                    {
-                        lineasUnicas.Add(linea);
-                    }
-                }
+               // Convertir HashSet a lista y ordenar
+               List<string> lineasOrdenadas = lineasUnicas.ToList();
+               lineasOrdenadas.Sort(); // Ordenar alfabeticamente
 
-                // Agregar lineas 
-                foreach (var linea in lineasUnicas)
-                {
-                    cmb_Lineas.Items.Add(linea);
-                }
+               // Agregar lineas ordenadas al ComboBox
+               foreach (var linea in lineasOrdenadas)
+               {
+                   cmb_Lineas.Items.Add(linea);
+               }
 
-                // opcion  "Todas" 
-                cmb_Lineas.SelectedIndex = 0;
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron estaciones en el archivo JSON o el archivo está vacío.");
-            }
+               // Opcion "Todas"
+               cmb_Lineas.SelectedIndex = 0;
+           }
+           else
+           {
+               MessageBox.Show("No se encontraron estaciones en el archivo JSON o el archivo esta vacio.");
+           }
         }
 
-        // Método para leer el archivo JSON
+
+        // Metodo para leer el archivo JSON
         private EstacionesWrapper LeerArchivoJson(string rutaArchivo)
         {
             try
@@ -69,7 +72,7 @@ namespace My_FrmInicio
                 }
                 else
                 {
-                    MessageBox.Show($"No se encontró el archivo en la ruta: {rutaArchivo}");
+                    MessageBox.Show($"No se encontrï¿½ el archivo en la ruta: {rutaArchivo}");
                     return new EstacionesWrapper();
                 }
             }
@@ -81,41 +84,54 @@ namespace My_FrmInicio
         }
 
 
-    private void btn_Estaciones_Click_1(object sender, EventArgs e)
-{
-    listBox_Estaciones.Items.Clear(); // Limpiar ListBox antes de mostrar las estaciones
-    string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+        private void btn_Estaciones_Click_1(object sender, EventArgs e)
+        {   
+            listBox_Estaciones.Items.Clear(); // Limpiar ListBox antes de mostrar las estaciones
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-    // Clonamos la lista de estaciones para poder ordenarla sin modificar la lista original
-    List<Estacion> estacionesParaMostrar;
+            // Clonamos la lista de estaciones para poder ordenarla sin modificar la lista original
+            List<Estacion> estacionesParaMostrar;
 
-    if (lineaSeleccionada == "Todas")
-    {
-        // Ordenamos todas las estaciones cuando se selecciona "Todas"
-        estacionesParaMostrar = new List<Estacion>(estaciones); 
-    }
-    else
-    {
-        // Filtramos y ordenamos solo las estaciones que pertenecen a la línea seleccionada
-        estacionesParaMostrar = estaciones.Where(estacion => estacion.Lineas.Contains(lineaSeleccionada)).ToList();
-    }
+            if (lineaSeleccionada == "Todas")
+            {
+                // Ordenamos todas las estaciones cuando se selecciona "Todas"
+                estacionesParaMostrar = new List<Estacion>(estaciones); 
+            }
+            else
+            {
+                // Filtramos y ordenamos solo las estaciones que pertenecen a la lÃ­nea seleccionada
+                estacionesParaMostrar = estaciones.Where(estacion => estacion.Lineas.Contains(lineaSeleccionada)).ToList();
+            }
 
-    // Ordenamos la lista antes de mostrarla en el ListBox
-    Ordenamientos.OrdenarPorInsercion(estacionesParaMostrar);
+            // Metodos de ordenamiento para la lista 
 
-    // Llenamos el ListBox con las estaciones ordenadas
-    if (estacionesParaMostrar.Any())
-    {
-        foreach (var estacion in estacionesParaMostrar)
-        {
-            listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+            //Ordenamientos.SortUsingInsertion(estacionesParaMostrar); //Metodo Insercion
+            // Ordenamientos.SortUsingBubbleSort(estacionesParaMostrar); //Metodo Burbuja
+            // Ordenamientos.SortUsingSelection(estacionesParaMostrar); //Metodo Seleccion 
+            Ordenamientos.SortUsingMerge(estacionesParaMostrar); //Metodo Mezcla
+
+
+            // Mostrar las estaciones ordenadas en la consola
+            Console.WriteLine("Estaciones ordenadas por nombre: \n");
+            foreach (var estacion in estacionesParaMostrar) // CambiÃ© aquÃ­ para usar 'estacionesParaMostrar'
+            {
+                Console.WriteLine($"- {estacion.Nombre} \n");
+            }
+
+            // Llenamos el ListBox con las estaciones ordenadas
+            if (estacionesParaMostrar.Any())
+            {
+                foreach (var estacion in estacionesParaMostrar)
+                {
+                    listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+                }
+            }
+            else
+            {
+                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta lÃ­nea.");
+            }
         }
-    }
-    else
-    {
-        listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
-    }
-}
+
 
 
         private void agregarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
