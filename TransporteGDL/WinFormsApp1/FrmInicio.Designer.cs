@@ -104,7 +104,7 @@ namespace My_FrmInicio
             btn_Estaciones.TabIndex = 6;
             btn_Estaciones.Text = "Buscar Estaciones";
             btn_Estaciones.UseVisualStyleBackColor = false;
-            btn_Estaciones.Click += btn_Estaciones_Click_1;
+            btn_Estaciones.Click += btn_Estaciones_Click;
             // 
             // menuStrip1
             // 

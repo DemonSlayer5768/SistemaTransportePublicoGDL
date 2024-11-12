@@ -6,9 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using WinFormsApp1;
+
 namespace My_FrmInicio
 {
-    public partial class FrmInicio : Form
+  
+     public partial class FrmInicio : Form
     {
         private List<Estacion> estaciones;
         private int[,] matrizAdyacencia;
@@ -16,56 +18,28 @@ namespace My_FrmInicio
         public FrmInicio()
         {
             InitializeComponent();
-            estaciones = new List<Estacion>();
+
+            // Cargar las estaciones directamente desde la clase Estacion
+            estaciones = Estacion.CargarDatos();
+
             matrizAdyacencia = new int[0, 0]; // Inicialización temporal para evitar la advertencia
-            CargarDatos();
+            InicializarComboBox();
         }
 
-        // Método para cargar datos del archivo JSON y configurar el ComboBox
-        private void CargarDatos()
+        private void InicializarComboBox()
         {
-            string rutaArchivo = "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json";
+            cmb_Lineas.Items.Clear();
+            cmb_Lineas.Items.Add("Todas");
 
-            if (File.Exists(rutaArchivo))
+            var lineasUnicas = estaciones.SelectMany(est => est.Lineas).Distinct().OrderBy(linea => linea);
+            foreach (var linea in lineasUnicas)
             {
-                string jsonData = File.ReadAllText(rutaArchivo);
-                JObject jsonObj = JObject.Parse(jsonData);
-
-                var estacionesArray = jsonObj["Estaciones"] as JArray;
-
-                if (estacionesArray != null)
-                {
-                    estaciones = estacionesArray.Select(estacion => new Estacion(
-                        (string?)estacion["Nombre"] ?? string.Empty,
-                        estacion["Lineas"]?.Select(linea => (string?)linea ?? string.Empty).ToList() ?? new List<string>(),
-                        (string?)estacion["ExtraCadena"] ?? string.Empty,
-                        (int?)estacion["ExtraNumerico"] ?? 0
-                    )).ToList();
-                }
-                else
-                {
-                    estaciones = new List<Estacion>(); // Si no se encuentran estaciones, se inicializa una lista vacía
-                }
-
-
-
-                cmb_Lineas.Items.Clear();
-                cmb_Lineas.Items.Add("Todas");
-
-                var lineasUnicas = estaciones.SelectMany(est => est.Lineas).Distinct().OrderBy(linea => linea);
-                foreach (var linea in lineasUnicas)
-                {
-                    cmb_Lineas.Items.Add(linea);
-                }
-                cmb_Lineas.SelectedIndex = 0;
+                cmb_Lineas.Items.Add(linea);
             }
-            else
-            {
-                MessageBox.Show($"No se encontró el archivo en la ruta: {rutaArchivo}");
-            }
+            cmb_Lineas.SelectedIndex = 0;
         }
 
-        // Modificar el método de construcción de la matriz de adyacencia para que acepte las estaciones seleccionadas
+
         private void ConstruirMatrizAdyacencia(List<Estacion> estacionesSeleccionadas)
         {
             int n = estacionesSeleccionadas.Count;
@@ -75,21 +49,18 @@ namespace My_FrmInicio
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    // Verificar si las estaciones i y j comparten alguna línea
                     bool compartenLinea = estacionesSeleccionadas[i].Lineas.Intersect(estacionesSeleccionadas[j].Lineas).Any();
                     if (compartenLinea)
                     {
                         matrizAdyacencia[i, j] = 1;
-                        matrizAdyacencia[j, i] = 1; // Simetría
+                        matrizAdyacencia[j, i] = 1; // Simetria
                     }
                 }
             }
         }
 
-        // Imprimir la matriz de adyacencia para las estaciones seleccionadas
         private void ImprimirMatrizAdyacencia(List<Estacion> estacionesSeleccionadas)
         {
-            // Usar un ListBox o cualquier otro control para mostrar la matriz
             listBox_Estaciones.Items.Clear();
             listBox_Estaciones.Items.Add($"Matriz de Adyacencia para la línea: {cmb_Lineas.SelectedItem}");
 
@@ -100,31 +71,21 @@ namespace My_FrmInicio
                 {
                     fila += matrizAdyacencia[i, j] + " ";
                 }
-                listBox_Estaciones.Items.Add(fila); // Mostrar la fila de la matriz
+                listBox_Estaciones.Items.Add(fila);
             }
         }
 
-
-        private void btn_Estaciones_Click_1(object sender, EventArgs e)
+        private void btn_Estaciones_Click(object sender, EventArgs e)
         {
             listBox_Estaciones.Items.Clear();
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesParaMostrar;
+            List<Estacion> estacionesParaMostrar = lineaSeleccionada == "Todas"
+                ? new List<Estacion>(estaciones)
+                : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            if (lineaSeleccionada == "Todas")
-            {
-                estacionesParaMostrar = new List<Estacion>(estaciones);
-            }
-            else
-            {
-                estacionesParaMostrar = estaciones.Where(estacion => estacion.Lineas.Contains(lineaSeleccionada)).ToList();
-            }
-
-        
             foreach (var estacion in estacionesParaMostrar)
             {
-                Console.WriteLine($"- {estacion.Nombre}");
                 listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
             }
 
@@ -134,7 +95,33 @@ namespace My_FrmInicio
             }
         }
 
-        private void agregarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pB_Refresh_Click(object sender, EventArgs e)
+        {
+            estaciones = Estacion.CargarDatos(); // Recargar estaciones
+            listBox_Estaciones.Items.Clear();
+
+        }
+
+        private void imprimirMatrizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+                ? new List<Estacion>(estaciones)
+                : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            if (estacionesSeleccionadas.Any())
+            {
+                ConstruirMatrizAdyacencia(estacionesSeleccionadas);
+                ImprimirMatrizAdyacencia(estacionesSeleccionadas);
+            }
+            else
+            {
+                MessageBox.Show("No hay estaciones para la línea seleccionada.");
+            }
+        }
+
+         private void agregarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Crear una instancia del nuevo formulario (por ejemplo, Form2)
             FrmAgregar nuevoForm = new FrmAgregar();
@@ -145,7 +132,6 @@ namespace My_FrmInicio
             // Mostrar el nuevo formulario
             nuevoForm.Show();
 
-            // Si quieres que el nuevo formulario sea modal (bloquee el formulario actual hasta que se cierre), usa:
             // nuevoForm.ShowDialog();
 
             // Para volver a mostrar el formulario actual cuando se cierre el nuevo:
@@ -160,58 +146,7 @@ namespace My_FrmInicio
             nuevoForm.FormClosed += (s, args) => this.Show();
         }
 
-        private void pB_Refresh_Click(object sender, EventArgs e)
-        {
-            listBox_Estaciones.Items.Clear();
-            CargarDatos();
-        }
-
-        private void imprimirMatrizToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
-
-            // Filtrar estaciones de acuerdo con la línea seleccionada
-            List<Estacion> estacionesSeleccionadas = new List<Estacion>();
-
-            if (lineaSeleccionada == "Todas")
-            {
-                estacionesSeleccionadas = new List<Estacion>(estaciones); // Si es "Todas", todas las estaciones
-            }
-            else
-            {
-                estacionesSeleccionadas = estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList(); // Filtrar solo las estaciones de la línea seleccionada
-            }
-
-            // Si no hay estaciones seleccionadas, mostramos un mensaje
-            if (estacionesSeleccionadas.Any())
-            {
-                // Construir la matriz de adyacencia para las estaciones seleccionadas
-                ConstruirMatrizAdyacencia(estacionesSeleccionadas);
-
-                // Imprimir la matriz de adyacencia en el ListBox o en otro control
-                ImprimirMatrizAdyacencia(estacionesSeleccionadas);
-            }
-            else
-            {
-                MessageBox.Show("No hay estaciones para la línea seleccionada.");
-            }
-        }
     }
 
-    // Clase Estacion
-    public class Estacion
-    {
-        public string Nombre { get; set; }
-        public List<string> Lineas { get; set; }
-        public string ExtraCadena { get; set; }
-        public int ExtraNumerico { get; set; }
-
-        public Estacion(string nombre, List<string> lineas, string extraCadena, int extraNumerico)
-        {
-            Nombre = nombre;
-            Lineas = lineas;
-            ExtraCadena = extraCadena;
-            ExtraNumerico = extraNumerico;
-        }
-    }
+    
 }
