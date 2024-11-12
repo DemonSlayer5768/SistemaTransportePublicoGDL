@@ -197,7 +197,7 @@ namespace My_FrmInicio
                 k++;
             }
         }
-
+        //QuickSort
         public static void SortUsingQuickSort(List<Estacion> estaciones)
         {
             // Iniciar el cronometro
@@ -226,30 +226,11 @@ namespace My_FrmInicio
             }
         }
 
-        // Método de particion
-        //private static int Partition(List<Estacion> estaciones, int low, int high)
-        //{
-        //    Estacion pivot = estaciones[low];
-        //    int i = low - 1;
-
-        //    for (int j = low + 1; j <=  high; j++)
-        //    {
-        //        // Comparar el nombre de la estacion actual con el pivot
-        //        if (String.Compare(estaciones[j].Nombre, pivot.Nombre) < 0)
-        //        {
-        //            Swap(estaciones, i, j);
-        //            i++;
-        //        }
-        //    }
-
-        //    //Swap(estaciones, i + 1, high);
-        //    //return i + 1;
-        //    Swap(estaciones, low, i - 1);
-        //    return i - 1;
-        //
-        //}
+        //partition
         private static int Partition(List<Estacion> estaciones, int low, int high)
         {
+            // Iniciar el cronometro
+            Stopwatch stopwatch = Stopwatch.StartNew();
             Estacion pivot = estaciones[low];
             int i = low;
             int j = low + 1;

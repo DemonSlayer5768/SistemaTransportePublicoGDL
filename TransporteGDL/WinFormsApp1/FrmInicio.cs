@@ -9,11 +9,10 @@ using WinFormsApp1;
 
 namespace My_FrmInicio
 {
-  
-     public partial class FrmInicio : Form
+
+    public partial class FrmInicio : Form
     {
         private List<Estacion> estaciones;
-        private int[,] matrizAdyacencia;
 
         public FrmInicio()
         {
@@ -22,10 +21,9 @@ namespace My_FrmInicio
             // Cargar las estaciones directamente desde la clase Estacion
             estaciones = Estacion.CargarDatos();
 
-            matrizAdyacencia = new int[0, 0]; // Inicialización temporal para evitar la advertencia
             InicializarComboBox();
         }
-
+        //inicializa el comboBox lineas
         private void InicializarComboBox()
         {
             cmb_Lineas.Items.Clear();
@@ -38,43 +36,7 @@ namespace My_FrmInicio
             }
             cmb_Lineas.SelectedIndex = 0;
         }
-
-
-        private void ConstruirMatrizAdyacencia(List<Estacion> estacionesSeleccionadas)
-        {
-            int n = estacionesSeleccionadas.Count;
-            matrizAdyacencia = new int[n, n];
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = i + 1; j < n; j++)
-                {
-                    bool compartenLinea = estacionesSeleccionadas[i].Lineas.Intersect(estacionesSeleccionadas[j].Lineas).Any();
-                    if (compartenLinea)
-                    {
-                        matrizAdyacencia[i, j] = 1;
-                        matrizAdyacencia[j, i] = 1; // Simetria
-                    }
-                }
-            }
-        }
-
-        private void ImprimirMatrizAdyacencia(List<Estacion> estacionesSeleccionadas)
-        {
-            listBox_Estaciones.Items.Clear();
-            listBox_Estaciones.Items.Add($"Matriz de Adyacencia para la línea: {cmb_Lineas.SelectedItem}");
-
-            for (int i = 0; i < matrizAdyacencia.GetLength(0); i++)
-            {
-                string fila = "";
-                for (int j = 0; j < matrizAdyacencia.GetLength(1); j++)
-                {
-                    fila += matrizAdyacencia[i, j] + " ";
-                }
-                listBox_Estaciones.Items.Add(fila);
-            }
-        }
-
+        //boton imprimir las estaciones
         private void btn_Estaciones_Click(object sender, EventArgs e)
         {
             listBox_Estaciones.Items.Clear();
@@ -94,34 +56,15 @@ namespace My_FrmInicio
                 listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
             }
         }
-
+        //boton recargar datos
         private void pB_Refresh_Click(object sender, EventArgs e)
         {
             estaciones = Estacion.CargarDatos(); // Recargar estaciones
             listBox_Estaciones.Items.Clear();
 
         }
-
-        private void imprimirMatrizToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
-
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-                ? new List<Estacion>(estaciones)
-                : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
-
-            if (estacionesSeleccionadas.Any())
-            {
-                ConstruirMatrizAdyacencia(estacionesSeleccionadas);
-                ImprimirMatrizAdyacencia(estacionesSeleccionadas);
-            }
-            else
-            {
-                MessageBox.Show("No hay estaciones para la línea seleccionada.");
-            }
-        }
-
-         private void agregarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
+        //abrir form agregar estacion
+        private void agregarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Crear una instancia del nuevo formulario (por ejemplo, Form2)
             FrmAgregar nuevoForm = new FrmAgregar();
@@ -137,7 +80,7 @@ namespace My_FrmInicio
             // Para volver a mostrar el formulario actual cuando se cierre el nuevo:
             nuevoForm.FormClosed += (s, args) => this.Show();
         }
-
+        //abrir form eliminar estacion
         private void eliminarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmEliminar nuevoForm = new FrmEliminar();
@@ -145,8 +88,142 @@ namespace My_FrmInicio
             nuevoForm.Show();
             nuevoForm.FormClosed += (s, args) => this.Show();
         }
+        //abrir form busqueda anchura
+        private void anchuraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmRuta nuevoForm = new FrmRuta();
+            //this.Hide();
+            nuevoForm.Show();
+            nuevoForm.FormClosed += (s, args) => this.Show();
+        }
+        // imprimir matriz
+        private void imprimirMatrizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+                ? new List<Estacion>(estaciones)
+                : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            if (estacionesSeleccionadas.Any())
+            {
+                Estacion.ConstruirMatrizAdyacencia(estacionesSeleccionadas);
+            }
+            else
+            {
+                MessageBox.Show("No hay estaciones para la línea seleccionada.");
+            }
+        }
+        // Metodos de Ordenamientos
+        private void insercionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox_Estaciones.Items.Clear();
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(estaciones)
+               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            Ordenamientos.SortUsingInsertion(estacionesSeleccionadas);
+
+            foreach (var estacion in estacionesSeleccionadas)
+            {
+                listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+            }
+
+            if (!estacionesSeleccionadas.Any())
+            {
+                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+            }
+        }
+        private void burbujaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox_Estaciones.Items.Clear();
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(estaciones)
+               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            Ordenamientos.SortUsingBubbleSort(estacionesSeleccionadas);
+
+            foreach (var estacion in estacionesSeleccionadas)
+            {
+                listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+            }
+
+            if (!estacionesSeleccionadas.Any())
+            {
+                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+            }
+        }
+        private void seleccionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox_Estaciones.Items.Clear();
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(estaciones)
+               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            Ordenamientos.SortUsingSelection(estacionesSeleccionadas);
+
+            foreach (var estacion in estacionesSeleccionadas)
+            {
+                listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+            }
+
+            if (!estacionesSeleccionadas.Any())
+            {
+                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+            }
+        }
+        private void mezclaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox_Estaciones.Items.Clear();
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(estaciones)
+               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            Ordenamientos.SortUsingMerge(estacionesSeleccionadas);
+
+            foreach (var estacion in estacionesSeleccionadas)
+            {
+                listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+            }
+
+            if (!estacionesSeleccionadas.Any())
+            {
+                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+            }
+        }
+        private void quickSortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox_Estaciones.Items.Clear();
+            string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(estaciones)
+               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+            Ordenamientos.SortUsingQuickSort(estacionesSeleccionadas);
+
+            foreach (var estacion in estacionesSeleccionadas)
+            {
+                listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
+            }
+
+            if (!estacionesSeleccionadas.Any())
+            {
+                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+            }
+        }
 
     }
 
-    
 }
+
+
+

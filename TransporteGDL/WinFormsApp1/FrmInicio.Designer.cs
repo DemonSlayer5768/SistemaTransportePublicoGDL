@@ -39,12 +39,17 @@ namespace My_FrmInicio
             opcionesToolStripMenuItem = new ToolStripMenuItem();
             agregarEstacionToolStripMenuItem = new ToolStripMenuItem();
             eliminarEstacionToolStripMenuItem = new ToolStripMenuItem();
-            pB_Refresh = new PictureBox();
-            pB_Image = new PictureBox();
             ordenamientosToolStripMenuItem = new ToolStripMenuItem();
-            imprimirMatrizToolStripMenuItem = new ToolStripMenuItem();
+            insercionToolStripMenuItem = new ToolStripMenuItem();
             burbujaToolStripMenuItem = new ToolStripMenuItem();
             mezclaToolStripMenuItem = new ToolStripMenuItem();
+            seleccionToolStripMenuItem = new ToolStripMenuItem();
+            quickSortToolStripMenuItem = new ToolStripMenuItem();
+            imprimirMatrizToolStripMenuItem = new ToolStripMenuItem();
+            busquedasToolStripMenuItem = new ToolStripMenuItem();
+            anchuraToolStripMenuItem = new ToolStripMenuItem();
+            pB_Refresh = new PictureBox();
+            pB_Image = new PictureBox();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pB_Refresh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pB_Image).BeginInit();
@@ -119,7 +124,7 @@ namespace My_FrmInicio
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarEstacionToolStripMenuItem, eliminarEstacionToolStripMenuItem, ordenamientosToolStripMenuItem, imprimirMatrizToolStripMenuItem });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarEstacionToolStripMenuItem, eliminarEstacionToolStripMenuItem, ordenamientosToolStripMenuItem, imprimirMatrizToolStripMenuItem, busquedasToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(69, 20);
             opcionesToolStripMenuItem.Text = "Opciones";
@@ -137,6 +142,69 @@ namespace My_FrmInicio
             eliminarEstacionToolStripMenuItem.Size = new Size(180, 22);
             eliminarEstacionToolStripMenuItem.Text = "Eliminar Estacion";
             eliminarEstacionToolStripMenuItem.Click += eliminarEstacionToolStripMenuItem_Click;
+            // 
+            // ordenamientosToolStripMenuItem
+            // 
+            ordenamientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { insercionToolStripMenuItem, burbujaToolStripMenuItem, mezclaToolStripMenuItem, seleccionToolStripMenuItem, quickSortToolStripMenuItem });
+            ordenamientosToolStripMenuItem.Name = "ordenamientosToolStripMenuItem";
+            ordenamientosToolStripMenuItem.Size = new Size(180, 22);
+            ordenamientosToolStripMenuItem.Text = "Ordenamientos";
+            // 
+            // insercionToolStripMenuItem
+            // 
+            insercionToolStripMenuItem.Name = "insercionToolStripMenuItem";
+            insercionToolStripMenuItem.Size = new Size(126, 22);
+            insercionToolStripMenuItem.Text = "Insercion";
+            insercionToolStripMenuItem.Click += insercionToolStripMenuItem_Click;
+            // 
+            // burbujaToolStripMenuItem
+            // 
+            burbujaToolStripMenuItem.Name = "burbujaToolStripMenuItem";
+            burbujaToolStripMenuItem.Size = new Size(126, 22);
+            burbujaToolStripMenuItem.Text = "Burbuja";
+            burbujaToolStripMenuItem.Click += burbujaToolStripMenuItem_Click;
+            // 
+            // mezclaToolStripMenuItem
+            // 
+            mezclaToolStripMenuItem.Name = "mezclaToolStripMenuItem";
+            mezclaToolStripMenuItem.Size = new Size(126, 22);
+            mezclaToolStripMenuItem.Text = "Mezcla";
+            mezclaToolStripMenuItem.Click += mezclaToolStripMenuItem_Click;
+            // 
+            // seleccionToolStripMenuItem
+            // 
+            seleccionToolStripMenuItem.Name = "seleccionToolStripMenuItem";
+            seleccionToolStripMenuItem.Size = new Size(126, 22);
+            seleccionToolStripMenuItem.Text = "Seleccion";
+            seleccionToolStripMenuItem.Click += seleccionToolStripMenuItem_Click;
+            // 
+            // quickSortToolStripMenuItem
+            // 
+            quickSortToolStripMenuItem.Name = "quickSortToolStripMenuItem";
+            quickSortToolStripMenuItem.Size = new Size(126, 22);
+            quickSortToolStripMenuItem.Text = "QuickSort";
+            quickSortToolStripMenuItem.Click += quickSortToolStripMenuItem_Click;
+            // 
+            // imprimirMatrizToolStripMenuItem
+            // 
+            imprimirMatrizToolStripMenuItem.Name = "imprimirMatrizToolStripMenuItem";
+            imprimirMatrizToolStripMenuItem.Size = new Size(180, 22);
+            imprimirMatrizToolStripMenuItem.Text = "Imprimir matriz";
+            imprimirMatrizToolStripMenuItem.Click += imprimirMatrizToolStripMenuItem_Click;
+            // 
+            // busquedasToolStripMenuItem
+            // 
+            busquedasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anchuraToolStripMenuItem });
+            busquedasToolStripMenuItem.Name = "busquedasToolStripMenuItem";
+            busquedasToolStripMenuItem.Size = new Size(180, 22);
+            busquedasToolStripMenuItem.Text = "Busquedas";
+            // 
+            // anchuraToolStripMenuItem
+            // 
+            anchuraToolStripMenuItem.Name = "anchuraToolStripMenuItem";
+            anchuraToolStripMenuItem.Size = new Size(180, 22);
+            anchuraToolStripMenuItem.Text = "Anchura";
+            anchuraToolStripMenuItem.Click += anchuraToolStripMenuItem_Click;
             // 
             // pB_Refresh
             // 
@@ -159,32 +227,6 @@ namespace My_FrmInicio
             pB_Image.SizeMode = PictureBoxSizeMode.Zoom;
             pB_Image.TabIndex = 11;
             pB_Image.TabStop = false;
-            // 
-            // ordenamientosToolStripMenuItem
-            // 
-            ordenamientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { burbujaToolStripMenuItem, mezclaToolStripMenuItem });
-            ordenamientosToolStripMenuItem.Name = "ordenamientosToolStripMenuItem";
-            ordenamientosToolStripMenuItem.Size = new Size(180, 22);
-            ordenamientosToolStripMenuItem.Text = "Ordenamientos";
-            // 
-            // imprimirMatrizToolStripMenuItem
-            // 
-            imprimirMatrizToolStripMenuItem.Name = "imprimirMatrizToolStripMenuItem";
-            imprimirMatrizToolStripMenuItem.Size = new Size(180, 22);
-            imprimirMatrizToolStripMenuItem.Text = "Imprimir matriz";
-            imprimirMatrizToolStripMenuItem.Click += imprimirMatrizToolStripMenuItem_Click;
-            // 
-            // burbujaToolStripMenuItem
-            // 
-            burbujaToolStripMenuItem.Name = "burbujaToolStripMenuItem";
-            burbujaToolStripMenuItem.Size = new Size(180, 22);
-            burbujaToolStripMenuItem.Text = "Burbuja";
-            // 
-            // mezclaToolStripMenuItem
-            // 
-            mezclaToolStripMenuItem.Name = "mezclaToolStripMenuItem";
-            mezclaToolStripMenuItem.Size = new Size(180, 22);
-            mezclaToolStripMenuItem.Text = "Mezcla";
             // 
             // FrmInicio
             // 
@@ -226,11 +268,16 @@ namespace My_FrmInicio
         private ToolStripMenuItem opcionesToolStripMenuItem;
         private ToolStripMenuItem agregarEstacionToolStripMenuItem;
         private ToolStripMenuItem eliminarEstacionToolStripMenuItem;
+        private ToolStripMenuItem busquedasToolStripMenuItem;
+        private ToolStripMenuItem anchuraToolStripMenuItem;
         private PictureBox pB_Refresh;
         private PictureBox pB_Image;
+        private ToolStripMenuItem imprimirMatrizToolStripMenuItem;
         private ToolStripMenuItem ordenamientosToolStripMenuItem;
         private ToolStripMenuItem burbujaToolStripMenuItem;
+        private ToolStripMenuItem seleccionToolStripMenuItem;
         private ToolStripMenuItem mezclaToolStripMenuItem;
-        private ToolStripMenuItem imprimirMatrizToolStripMenuItem;
+        private ToolStripMenuItem quickSortToolStripMenuItem;
+        private ToolStripMenuItem insercionToolStripMenuItem;
     }
 }
