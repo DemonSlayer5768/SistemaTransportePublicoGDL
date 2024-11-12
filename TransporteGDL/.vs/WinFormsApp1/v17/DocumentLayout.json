@@ -69,6 +69,10 @@
           "SelectedChildIndex": 11,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Estaciones.cs",
@@ -87,8 +91,8 @@
               "Title": "FrmRuta.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmRuta.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs*",
-              "RelativeToolTip": "WinFormsApp1\\FrmRuta.cs*",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs",
+              "RelativeToolTip": "WinFormsApp1\\FrmRuta.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T20:27:47.271Z",
@@ -100,15 +104,11 @@
               "Title": "FrmRuta.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmRuta.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "WinFormsApp1\\FrmRuta.cs [Dise\u00F1o]*",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs [Dise\u00F1o]",
+              "RelativeToolTip": "WinFormsApp1\\FrmRuta.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T20:23:47.238Z",
               "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             },
             {
               "$type": "Document",
@@ -116,8 +116,8 @@
               "Title": "FrmAgregar.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmAgregar.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs*",
-              "RelativeToolTip": "WinFormsApp1\\FrmAgregar.cs*",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs",
+              "RelativeToolTip": "WinFormsApp1\\FrmAgregar.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T07:28:22.439Z",
@@ -181,8 +181,8 @@
               "Title": "FrmEliminar.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmEliminar.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs*",
-              "RelativeToolTip": "WinFormsApp1\\FrmEliminar.cs*",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
+              "RelativeToolTip": "WinFormsApp1\\FrmEliminar.cs",
               "ViewState": "AgIAALEAAAAAAAAAAAAmwM4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-27T22:40:36.116Z",
@@ -208,7 +208,7 @@
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmInicio.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmInicio.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmInicio.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAD4vzYAAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAAwMgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T19:46:15.904Z",
               "EditorCaption": ""
@@ -219,8 +219,8 @@
               "Title": "FrmAgregar.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmAgregar.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "WinFormsApp1\\FrmAgregar.cs [Dise\u00F1o]*",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs [Dise\u00F1o]",
+              "RelativeToolTip": "WinFormsApp1\\FrmAgregar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T07:28:14.052Z",
               "EditorCaption": " [Dise\u00F1o]"
@@ -243,8 +243,8 @@
               "Title": "FrmEliminar.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmEliminar.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "WinFormsApp1\\FrmEliminar.cs [Dise\u00F1o]*",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs [Dise\u00F1o]",
+              "RelativeToolTip": "WinFormsApp1\\FrmEliminar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T06:22:54.915Z",
               "EditorCaption": " [Dise\u00F1o]"
