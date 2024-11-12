@@ -41,6 +41,10 @@ namespace My_FrmInicio
             eliminarEstacionToolStripMenuItem = new ToolStripMenuItem();
             pB_Refresh = new PictureBox();
             pB_Image = new PictureBox();
+            ordenamientosToolStripMenuItem = new ToolStripMenuItem();
+            imprimirMatrizToolStripMenuItem = new ToolStripMenuItem();
+            burbujaToolStripMenuItem = new ToolStripMenuItem();
+            mezclaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pB_Refresh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pB_Image).BeginInit();
@@ -66,7 +70,7 @@ namespace My_FrmInicio
             listBox_Estaciones.ItemHeight = 15;
             listBox_Estaciones.Location = new Point(28, 217);
             listBox_Estaciones.Name = "listBox_Estaciones";
-            listBox_Estaciones.Size = new Size(431, 439);
+            listBox_Estaciones.Size = new Size(431, 424);
             listBox_Estaciones.TabIndex = 0;
             // 
             // lb_Buscar
@@ -96,7 +100,7 @@ namespace My_FrmInicio
             btn_Estaciones.Cursor = Cursors.Hand;
             btn_Estaciones.Location = new Point(310, 152);
             btn_Estaciones.Name = "btn_Estaciones";
-            btn_Estaciones.Size = new Size(149, 23);
+            btn_Estaciones.Size = new Size(149, 29);
             btn_Estaciones.TabIndex = 6;
             btn_Estaciones.Text = "Buscar Estaciones";
             btn_Estaciones.UseVisualStyleBackColor = false;
@@ -104,6 +108,7 @@ namespace My_FrmInicio
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { opcionesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
@@ -114,7 +119,7 @@ namespace My_FrmInicio
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarEstacionToolStripMenuItem, eliminarEstacionToolStripMenuItem });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarEstacionToolStripMenuItem, eliminarEstacionToolStripMenuItem, ordenamientosToolStripMenuItem, imprimirMatrizToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(69, 20);
             opcionesToolStripMenuItem.Text = "Opciones";
@@ -154,6 +159,32 @@ namespace My_FrmInicio
             pB_Image.SizeMode = PictureBoxSizeMode.Zoom;
             pB_Image.TabIndex = 11;
             pB_Image.TabStop = false;
+            // 
+            // ordenamientosToolStripMenuItem
+            // 
+            ordenamientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { burbujaToolStripMenuItem, mezclaToolStripMenuItem });
+            ordenamientosToolStripMenuItem.Name = "ordenamientosToolStripMenuItem";
+            ordenamientosToolStripMenuItem.Size = new Size(180, 22);
+            ordenamientosToolStripMenuItem.Text = "Ordenamientos";
+            // 
+            // imprimirMatrizToolStripMenuItem
+            // 
+            imprimirMatrizToolStripMenuItem.Name = "imprimirMatrizToolStripMenuItem";
+            imprimirMatrizToolStripMenuItem.Size = new Size(180, 22);
+            imprimirMatrizToolStripMenuItem.Text = "Imprimir matriz";
+            imprimirMatrizToolStripMenuItem.Click += imprimirMatrizToolStripMenuItem_Click;
+            // 
+            // burbujaToolStripMenuItem
+            // 
+            burbujaToolStripMenuItem.Name = "burbujaToolStripMenuItem";
+            burbujaToolStripMenuItem.Size = new Size(180, 22);
+            burbujaToolStripMenuItem.Text = "Burbuja";
+            // 
+            // mezclaToolStripMenuItem
+            // 
+            mezclaToolStripMenuItem.Name = "mezclaToolStripMenuItem";
+            mezclaToolStripMenuItem.Size = new Size(180, 22);
+            mezclaToolStripMenuItem.Text = "Mezcla";
             // 
             // FrmInicio
             // 
@@ -197,5 +228,9 @@ namespace My_FrmInicio
         private ToolStripMenuItem eliminarEstacionToolStripMenuItem;
         private PictureBox pB_Refresh;
         private PictureBox pB_Image;
+        private ToolStripMenuItem ordenamientosToolStripMenuItem;
+        private ToolStripMenuItem burbujaToolStripMenuItem;
+        private ToolStripMenuItem mezclaToolStripMenuItem;
+        private ToolStripMenuItem imprimirMatrizToolStripMenuItem;
     }
 }

@@ -43,3 +43,4 @@ D:\Porgramacion\Materias\Algoritmia\SISTEUR\TransporteGDL\WinFormsApp1\obj\Debug
 D:\Porgramacion\Materias\Algoritmia\SISTEUR\TransporteGDL\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
 D:\Porgramacion\Materias\Algoritmia\SISTEUR\TransporteGDL\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
 D:\Porgramacion\Materias\Algoritmia\SISTEUR\TransporteGDL\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll
+D:\Porgramacion\Materias\Algoritmia\SISTEUR\TransporteGDL\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.FrmRuta.resources

@@ -198,8 +198,89 @@ namespace My_FrmInicio
             }
         }
 
+        public static void SortUsingQuickSort(List<Estacion> estaciones)
+        {
+            // Iniciar el cronometro
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
+            // Llamada inicial a Quicksort
+            QuickSort(estaciones, 0, estaciones.Count - 1);
+
+            // Detener el cronometro
+            stopwatch.Stop();
+
+            // Mostrar el tiempo que tardo el algoritmo
+            MessageBox.Show($"Tiempo de ordenacion por Quicksort: {stopwatch.ElapsedMilliseconds} ms", "Tiempo de Ordenacion");
+        }
+
+        // Funcion recursiva de Quicksort
+        private static void QuickSort(List<Estacion> estaciones, int low, int high)
+        {
+            if (low < high)
+            {
+                int pivotIndex = Partition(estaciones, low, high);
+
+                // Ordenar recursivamente las dos particiones
+                QuickSort(estaciones, low, pivotIndex - 1);
+                QuickSort(estaciones, pivotIndex + 1, high);
+            }
+        }
+
+        // Método de particion
+        //private static int Partition(List<Estacion> estaciones, int low, int high)
+        //{
+        //    Estacion pivot = estaciones[low];
+        //    int i = low - 1;
+
+        //    for (int j = low + 1; j <=  high; j++)
+        //    {
+        //        // Comparar el nombre de la estacion actual con el pivot
+        //        if (String.Compare(estaciones[j].Nombre, pivot.Nombre) < 0)
+        //        {
+        //            Swap(estaciones, i, j);
+        //            i++;
+        //        }
+        //    }
+
+        //    //Swap(estaciones, i + 1, high);
+        //    //return i + 1;
+        //    Swap(estaciones, low, i - 1);
+        //    return i - 1;
+        //
+        //}
+        private static int Partition(List<Estacion> estaciones, int low, int high)
+        {
+            Estacion pivot = estaciones[low];
+            int i = low;
+            int j = low + 1;
+
+            do
+            {
+                // Comparar el nombre de la estacion actual con el pivot
+                if (String.Compare(estaciones[j].Nombre, pivot.Nombre) < 0)
+                {
+                    i++;
+                    Swap(estaciones, i, j);
+                }
+                j++;
+            } while (j <= high);
+
+            // Intercambiar el pivote con el elemento en la posición i
+            Swap(estaciones, low, i);
+            return i;
+        }
+
+
+
+        // Metodo para intercambiar dos elementos en la lista
+        private static void Swap(List<Estacion> estaciones, int i, int j)
+        {   
+            Estacion temp = estaciones[i];
+            estaciones[i] = estaciones[j];
+            estaciones[j] = temp;
+        }
 
 
     }
 }
+

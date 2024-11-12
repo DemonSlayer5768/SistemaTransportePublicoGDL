@@ -40,7 +40,7 @@ namespace WinFormsApp1
                 else
                 {
                     //Agregar nueva estacion si no existe
-                    Estacion nuevaEstacion = new Estacion(
+                    Estacions nuevaEstacion = new Estacions(
                         nombreEstacion,
                         new List<string> { lineaEstacion },
                         extraCadena,

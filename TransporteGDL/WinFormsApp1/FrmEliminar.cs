@@ -11,13 +11,13 @@ namespace WinFormsApp1
 {
     public partial class FrmEliminar : Form
     {
-        private List<Estacion> estaciones;
+        private List<Estacions> estaciones;
         private string rutaArchivo = "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json";
 
         public FrmEliminar()
         {
             InitializeComponent();
-            estaciones = new List<Estacion>();
+            estaciones = new List<Estacions>();
             CargarDatos_Lineas();
         }
 
@@ -189,14 +189,14 @@ namespace WinFormsApp1
     }
 
     // Clase Estacion
-    public class Estacion
+    public class Estacions
     {
         public string Nombre { get; set; }
         public List<string> Lineas { get; set; }
         public string ExtraCadena { get; set; }
         public int ExtraNumerico { get; set; }
 
-        public Estacion(string nombre, List<string> lineas, string extraCadena, int extraNumerico)
+        public Estacions(string nombre, List<string> lineas, string extraCadena, int extraNumerico)
         {
             Nombre = nombre;
             Lineas = lineas;
@@ -208,7 +208,7 @@ namespace WinFormsApp1
     // Clase envoltura para deserializar el JSON
     public class EstacionesWrapper
     {
-        public List<Estacion> Estaciones { get; set; } = new List<Estacion>();
+        public List<Estacions> Estaciones { get; set; } = new List<Estacions>();
 
         public EstacionesWrapper() { }
     }
