@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\estaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\estaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +23,8 @@
       "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmruta.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\estaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\estaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\winformsapp1\\frmruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frminicio.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,20 +35,12 @@
       "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\algorimosbusqueda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\algorimosbusqueda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\ordenamientos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\ordenamientos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\winformsapp1\\frmagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\stpmg.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -55,12 +51,20 @@
       "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmeliminar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmeliminar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\winformsapp1\\frmagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmagregar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmagregar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmeliminar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|d:\\porgramacion\\materias\\algoritmia\\sisteur\\transportegdl\\winformsapp1\\frmeliminar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A171BBB4-D271-4F07-9143-81C0B9E19D81}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\frmeliminar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,72 +82,98 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
+              "Title": "AlgorimosBusqueda.cs",
+              "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\AlgorimosBusqueda.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\AlgorimosBusqueda.cs",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\AlgorimosBusqueda.cs",
+              "RelativeToolTip": "WinFormsApp1\\AlgorimosBusqueda.cs",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAswOAAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T19:04:12.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "FrmRuta.Designer.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.Designer.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmRuta.Designer.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.Designer.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmRuta.Designer.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAowGMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T23:21:52.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "FrmEliminar.cs",
+              "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\FrmEliminar.cs",
+              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
+              "RelativeToolTip": "WinFormsApp1\\FrmEliminar.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAgwLwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T22:40:36.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "FrmInicio.Designer.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmInicio.Designer.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmInicio.Designer.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmInicio.Designer.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmInicio.Designer.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAqwJkAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T21:55:28.119Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Estaciones.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\Estaciones.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\Estaciones.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\Estaciones.cs",
               "RelativeToolTip": "WinFormsApp1\\Estaciones.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAFgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAtwEgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T20:34:31.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FrmRuta.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmRuta.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmRuta.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAgwIUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAswG0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T20:27:47.271Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "FrmAgregar.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmAgregar.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmAgregar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwCoAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T07:28:22.439Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "FrmAgregar.Designer.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.Designer.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmAgregar.Designer.cs",
@@ -155,25 +185,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "FrmEliminar.Designer.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.Designer.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmEliminar.Designer.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.Designer.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmEliminar.Designer.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAowH4AAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-28T06:22:24.367Z"
+              "WhenOpened": "2024-10-28T06:22:24.367Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Ordenamientos.cs",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\Ordenamientos.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\Ordenamientos.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\Ordenamientos.cs",
               "RelativeToolTip": "WinFormsApp1\\Ordenamientos.cs",
-              "ViewState": "AgIAAM0AAAAAAAAAAAAkwOYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T05:02:46.541Z",
               "EditorCaption": ""
@@ -181,27 +212,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "FrmEliminar.cs",
-              "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
-              "RelativeDocumentMoniker": "WinFormsApp1\\FrmEliminar.cs",
-              "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
-              "RelativeToolTip": "WinFormsApp1\\FrmEliminar.cs",
-              "ViewState": "AgIAALEAAAAAAAAAAAAmwM4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T22:40:36.116Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "STPMG.json",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json",
               "RelativeDocumentMoniker": "WinFormsApp1\\STPMG.json",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json",
               "RelativeToolTip": "WinFormsApp1\\STPMG.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-27T02:18:16.246Z"
+              "WhenOpened": "2024-10-27T02:18:16.246Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -211,14 +230,14 @@
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmInicio.cs",
               "ToolTip": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmInicio.cs",
               "RelativeToolTip": "WinFormsApp1\\FrmInicio.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwBkAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAA1wBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T19:46:15.904Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "FrmRuta.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmRuta.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmRuta.cs",
@@ -230,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "FrmInicio.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmInicio.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmInicio.cs",
@@ -242,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "FrmAgregar.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmAgregar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmAgregar.cs",
@@ -253,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "FrmEliminar.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\FrmEliminar.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FrmEliminar.cs",

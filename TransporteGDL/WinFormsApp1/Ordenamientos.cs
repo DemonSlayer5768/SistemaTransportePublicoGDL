@@ -8,24 +8,24 @@ namespace My_FrmInicio
 {
     internal class Ordenamientos
     {
-        // Metodo para ordenar estaciones por nombre usando el algoritmo de ordenamiento por insercion
-        public static void SortUsingInsertion(List<Estacion> estaciones)
+        // Metodo para ordenar Estaciones por Estaciones usando el algoritmo de ordenamiento por insercion
+        public static void SortUsingInsertion(List<Estacion> Estaciones)
         {
             // Iniciar el cronometro
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            for (int i = 1; i < estaciones.Count; i++)
+            for (int i = 1; i < Estaciones.Count; i++)
             {
-                Estacion clave = estaciones[i];
+                Estacion clave = Estaciones[i];
                 int j = i - 1;
 
                 // Comparar y mover elementos que son mayores que la clave
-                while (j >= 0 && String.Compare(estaciones[j].Nombre, clave.Nombre) > 0)
+                while (j >= 0 && String.Compare(Estaciones[j].Nombre, clave.Nombre) > 0)
                 {
-                    estaciones[j + 1] = estaciones[j]; // Mover el elemento hacia adelante
+                    Estaciones[j + 1] = Estaciones[j]; // Mover el elemento hacia adelante
                     j--;
                 }
-                estaciones[j + 1] = clave; // Insertar la clave en su posición correcta
+                Estaciones[j + 1] = clave; // Insertar la clave en su posición correcta
             }
 
             // Detener el cronometro
@@ -35,13 +35,13 @@ namespace My_FrmInicio
             MessageBox.Show($"Tiempo de ordenacion por Insercion: {stopwatch.ElapsedMilliseconds} ms", "Tiempo de Ordenacion");
         }
 
-        //Metodo para ordenar estaciones por nombre usando el algoritmo de ordenamiento por Burbuja
-        public static void SortUsingBubbleSort(List<Estacion> estaciones)
+        //Metodo para ordenar Estaciones por Estaciones usando el algoritmo de ordenamiento por Burbuja
+        public static void SortUsingBubbleSort(List<Estacion> Estaciones)
         {
             // Iniciar el cronometro
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            int n = estaciones.Count;
+            int n = Estaciones.Count;
             bool intercambiado;
 
             // Iterar a través de la lista
@@ -52,12 +52,12 @@ namespace My_FrmInicio
                 // Comparar elementos adyacentes
                 for (int j = 0; j < n - i - 1; j++)
                 {
-                    if (String.Compare(estaciones[j].Nombre, estaciones[j + 1].Nombre) > 0)
+                    if (String.Compare(Estaciones[j].Nombre, Estaciones[j + 1].Nombre) > 0)
                     {
                         // Intercambiar si están en el orden incorrecto
-                        Estacion temp = estaciones[j];
-                        estaciones[j] = estaciones[j + 1];
-                        estaciones[j + 1] = temp;
+                        Estacion temp = Estaciones[j];
+                        Estaciones[j] = Estaciones[j + 1];
+                        Estaciones[j + 1] = temp;
 
                         intercambiado = true;
                     }
@@ -75,21 +75,21 @@ namespace My_FrmInicio
             MessageBox.Show($"Tiempo de ordenacion por metodo Burbuja: {stopwatch.ElapsedMilliseconds} ms", "Tiempo de Ordenación");
         }
 
-        // Método para ordenar estaciones por nombre usando el algoritmo de ordenamiento por seleccion
-        public static void SortUsingSelection(List<Estacion> estaciones)
+        // Método para ordenar Estaciones por Estaciones usando el algoritmo de ordenamiento por seleccion
+        public static void SortUsingSelection(List<Estacion> Estaciones)
         {
             // Iniciar el cronómetro
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            for (int i = 0; i < estaciones.Count - 1; i++)
+            for (int i = 0; i < Estaciones.Count - 1; i++)
             {
                 // Suponemos que el primer elemento es el más pequeño
                 int indiceMinimo = i;
 
                 // Buscar el elemento más pequeño en la parte no ordenada
-                for (int j = i + 1; j < estaciones.Count; j++)
+                for (int j = i + 1; j < Estaciones.Count; j++)
                 {
-                    if (String.Compare(estaciones[j].Nombre, estaciones[indiceMinimo].Nombre) < 0)
+                    if (String.Compare(Estaciones[j].Nombre, Estaciones[indiceMinimo].Nombre) < 0)
                     {
                         indiceMinimo = j; // Actualizar el indice del elemento más pequeño
                     }
@@ -98,9 +98,9 @@ namespace My_FrmInicio
                 // Intercambiar el elemento más pequeño con el primer elemento no ordenado
                 if (indiceMinimo != i)
                 {
-                    Estacion temp = estaciones[i];
-                    estaciones[i] = estaciones[indiceMinimo];
-                    estaciones[indiceMinimo] = temp;
+                    Estacion temp = Estaciones[i];
+                    Estaciones[i] = Estaciones[indiceMinimo];
+                    Estaciones[indiceMinimo] = temp;
                 }
             }
 
@@ -111,14 +111,14 @@ namespace My_FrmInicio
             MessageBox.Show($"Tiempo de ordenacion por Seleccion: {stopwatch.ElapsedMilliseconds} ms", "Tiempo de Ordenación");
         }
 
-        // Metodo para ordenar estaciones por nombre usando el algoritmo de ordenamiento por mezcla
-        public static void SortUsingMerge(List<Estacion> estaciones)
+        // Metodo para ordenar Estaciones por Estaciones usando el algoritmo de ordenamiento por mezcla
+        public static void SortUsingMerge(List<Estacion> Estaciones)
         {
             // Iniciar el cronometro
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             // Llamada al método recursivo de mezcla
-            MergeSort(estaciones, 0, estaciones.Count - 1);
+            MergeSort(Estaciones, 0, Estaciones.Count - 1);
 
             // Detener el cronometro
             stopwatch.Stop();
@@ -128,7 +128,7 @@ namespace My_FrmInicio
         }
 
         // Metodo auxiliar para realizar el ordenamiento por mezcla
-        private static void MergeSort(List<Estacion> estaciones, int izquierda, int derecha)
+        private static void MergeSort(List<Estacion> Estaciones, int izquierda, int derecha)
         {
             if (izquierda < derecha)
             {
@@ -136,17 +136,17 @@ namespace My_FrmInicio
                 int medio = (izquierda + derecha) / 2;
 
                 // Ordenar la mitad izquierda
-                MergeSort(estaciones, izquierda, medio);
+                MergeSort(Estaciones, izquierda, medio);
                 // Ordenar la mitad derecha
-                MergeSort(estaciones, medio + 1, derecha);
+                MergeSort(Estaciones, medio + 1, derecha);
 
                 // Mezclar las dos mitades
-                Merge(estaciones, izquierda, medio, derecha);
+                Merge(Estaciones, izquierda, medio, derecha);
             }
         }
 
         // Metodo para combinar dos subarreglos ordenados
-        private static void Merge(List<Estacion> estaciones, int izquierda, int medio, int derecha)
+        private static void Merge(List<Estacion> Estaciones, int izquierda, int medio, int derecha)
         {
             // Calcular el tamaño de los subarreglos
             int n1 = medio - izquierda + 1;
@@ -158,9 +158,9 @@ namespace My_FrmInicio
 
             // Copiar datos a los arreglos temporales
             for (int i = 0; i < n1; i++)
-                izquierdaArray[i] = estaciones[izquierda + i];
+                izquierdaArray[i] = Estaciones[izquierda + i];
             for (int j = 0; j < n2; j++)
-                derechaArray[j] = estaciones[medio + 1 + j];
+                derechaArray[j] = Estaciones[medio + 1 + j];
 
             // Mezclar los arreglos temporales
             int k = izquierda;
@@ -171,12 +171,12 @@ namespace My_FrmInicio
             {
                 if (String.Compare(izquierdaArray[iIndex].Nombre, derechaArray[jIndex].Nombre) <= 0)
                 {
-                    estaciones[k] = izquierdaArray[iIndex];
+                    Estaciones[k] = izquierdaArray[iIndex];
                     iIndex++;
                 }
                 else
                 {
-                    estaciones[k] = derechaArray[jIndex];
+                    Estaciones[k] = derechaArray[jIndex];
                     jIndex++;
                 }
                 k++;
@@ -185,26 +185,26 @@ namespace My_FrmInicio
             // Copiar los elementos restantes, si hay alguno
             while (iIndex < n1)
             {
-                estaciones[k] = izquierdaArray[iIndex];
+                Estaciones[k] = izquierdaArray[iIndex];
                 iIndex++;
                 k++;
             }
 
             while (jIndex < n2)
             {
-                estaciones[k] = derechaArray[jIndex];
+                Estaciones[k] = derechaArray[jIndex];
                 jIndex++;
                 k++;
             }
         }
         //QuickSort
-        public static void SortUsingQuickSort(List<Estacion> estaciones)
+        public static void SortUsingQuickSort(List<Estacion> Estaciones)
         {
             // Iniciar el cronometro
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             // Llamada inicial a Quicksort
-            QuickSort(estaciones, 0, estaciones.Count - 1);
+            QuickSort(Estaciones, 0, Estaciones.Count - 1);
 
             // Detener el cronometro
             stopwatch.Stop();
@@ -214,51 +214,51 @@ namespace My_FrmInicio
         }
 
         // Funcion recursiva de Quicksort
-        private static void QuickSort(List<Estacion> estaciones, int low, int high)
+        private static void QuickSort(List<Estacion> Estaciones, int low, int high)
         {
             if (low < high)
             {
-                int pivotIndex = Partition(estaciones, low, high);
+                int pivotIndex = Partition(Estaciones, low, high);
 
                 // Ordenar recursivamente las dos particiones
-                QuickSort(estaciones, low, pivotIndex - 1);
-                QuickSort(estaciones, pivotIndex + 1, high);
+                QuickSort(Estaciones, low, pivotIndex - 1);
+                QuickSort(Estaciones, pivotIndex + 1, high);
             }
         }
 
         //partition
-        private static int Partition(List<Estacion> estaciones, int low, int high)
+        private static int Partition(List<Estacion> Estaciones, int low, int high)
         {
             // Iniciar el cronometro
             Stopwatch stopwatch = Stopwatch.StartNew();
-            Estacion pivot = estaciones[low];
+            Estacion pivot = Estaciones[low];
             int i = low;
             int j = low + 1;
 
             do
             {
-                // Comparar el nombre de la estacion actual con el pivot
-                if (String.Compare(estaciones[j].Nombre, pivot.Nombre) < 0)
+                // Comparar el Estaciones de la estacion actual con el pivot
+                if (String.Compare(Estaciones[j].Nombre, pivot.Nombre) < 0)
                 {
                     i++;
-                    Swap(estaciones, i, j);
+                    Swap(Estaciones, i, j);
                 }
                 j++;
             } while (j <= high);
 
             // Intercambiar el pivote con el elemento en la posición i
-            Swap(estaciones, low, i);
+            Swap(Estaciones, low, i);
             return i;
         }
 
 
 
         // Metodo para intercambiar dos elementos en la lista
-        private static void Swap(List<Estacion> estaciones, int i, int j)
-        {   
-            Estacion temp = estaciones[i];
-            estaciones[i] = estaciones[j];
-            estaciones[j] = temp;
+        private static void Swap(List<Estacion> Estaciones, int i, int j)
+        {
+            Estacion temp = Estaciones[i];
+            Estaciones[i] = Estaciones[j];
+            Estaciones[j] = temp;
         }
 
 

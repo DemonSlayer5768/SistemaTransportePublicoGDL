@@ -1,37 +1,122 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 
-
-
-internal class Estacion
+public class Estacion
 {
-    public static string RutaArchivoJson { get; set; } = "D:\\Porgramacion\\Materias\\Algoritmia\\SISTEUR\\TransporteGDL\\WinFormsApp1\\STPMG.json";
-
-    public string Nombre { get; set; }
+    public string? Nombre { get; set; }
     public List<string> Lineas { get; set; }
-    public string ExtraCadena { get; set; }
-    public int ExtraNumerico { get; set; }
+    public List<string> Conexiones { get; set; }
+    public int Marca { get; set; } // Añadimos un campo Marca para el contador.
 
-    public Estacion(string nombre, List<string> lineas, string extraCadena, int extraNumerico)
+    public Estacion(string? nombre, List<string> lineas, List<string> conexiones)
     {
         Nombre = nombre;
         Lineas = lineas;
-        ExtraCadena = extraCadena;
-        ExtraNumerico = extraNumerico;
+        Conexiones = conexiones;
+        Marca = 0;
+    }
+}
+
+public class GrafoEstaciones
+{
+    public List<Estacion> Estaciones { get; set; } = new List<Estacion>();
+    // private int contador = 0; // Contador global para la marca.
+
+    // Método para agregar Estaciones al grafo
+    public void AgregarEstacion(Estacion estacion)
+    {
+        Estaciones.Add(estacion);
     }
 
-
-    public static void ConstruirMatrizAdyacencia(List<Estacion> estacionesSeleccionadas)
+    // Método para agregar una conexión entre dos Estaciones
+    public void AgregarConexion(Estacion estacion1, Estacion estacion2)
     {
-        int[,] matrizAdyacencia;
-        int n = estacionesSeleccionadas.Count;
-        matrizAdyacencia = new int[n, n];
+        if (!estacion1.Conexiones.Contains(estacion2.Nombre ?? string.Empty))
+        {
+            estacion1.Conexiones.Add(estacion2.Nombre ?? string.Empty);
+        }
+        if (!estacion2.Conexiones.Contains(estacion1.Nombre ?? string.Empty))
+        {
+            estacion2.Conexiones.Add(estacion1.Nombre ?? string.Empty);
+        }
+    }
+
+    // Método para obtener una estación por nombre
+    public Estacion? ObtenerEstacion(string nombre)
+    {
+        return Estaciones.FirstOrDefault(e => e.Nombre == nombre);
+    }
+}
+
+internal class SistemaTransporte
+{
+    public static string RutaArchivoJson { get; set; } = "STPMG.json";
+
+    public static List<Estacion> CargarDatos()
+    {
+        List<Estacion> Estaciones = new List<Estacion>();
+
+        if (File.Exists(RutaArchivoJson))
+        {
+            string jsonData = File.ReadAllText(RutaArchivoJson);
+            JObject jsonObj = JObject.Parse(jsonData);
+
+            var EstacionesArray = jsonObj["Estaciones"] as JArray;
+
+            if (EstacionesArray != null)
+            {
+                Estaciones = EstacionesArray.Select(estacion => new Estacion(
+                    (string?)estacion["Nombre"], // Nombre de la estación
+                    estacion["Lineas"]?.Select(linea => (string?)linea ?? string.Empty).ToList() ?? new List<string>(),
+                    estacion["Conexiones"]?.Select(conexion => (string?)conexion ?? string.Empty).ToList() ?? new List<string>()
+                )).ToList();
+
+            }
+        }
+        else
+        {
+            Console.WriteLine($"No se encontró el archivo en la ruta: {RutaArchivoJson}");
+        }
+
+        Console.WriteLine($"Estaciones cargadas: {Estaciones.Count}");
+        return Estaciones;
+    }
+
+    // Método para agregar una conexión entre dos Estaciones
+    public static void AgregarConexion(Estacion estacion1, Estacion estacion2)
+    {
+        if (!estacion1.Conexiones.Contains(estacion2.Nombre ?? string.Empty))
+        {
+            estacion1.Conexiones.Add(estacion2.Nombre ?? string.Empty);
+        }
+        if (!estacion2.Conexiones.Contains(estacion1.Nombre ?? string.Empty))
+        {
+            estacion2.Conexiones.Add(estacion1.Nombre ?? string.Empty);
+        }
+    }
+}
+
+
+//Método para construir la matriz de adyacencia
+class Matriz
+{
+
+    public static void ConstruirMatrizAdyacencia(List<Estacion> EstacionesSeleccionadas)
+    {
+        int n = EstacionesSeleccionadas.Count;
+        var matrizAdyacencia = new int[n, n];
 
         for (int i = 0; i < n; i++)
         {
             for (int j = i + 1; j < n; j++)
             {
-                bool compartenLinea = estacionesSeleccionadas[i].Lineas.Intersect(estacionesSeleccionadas[j].Lineas).Any();
+                bool compartenLinea = EstacionesSeleccionadas[i].Lineas.Intersect(EstacionesSeleccionadas[j].Lineas).Any();
                 if (compartenLinea)
                 {
                     matrizAdyacencia[i, j] = 1;
@@ -40,7 +125,7 @@ internal class Estacion
             }
         }
 
-        // Convertir la matriz a string para mostrar
+        // Convertir la matriz a texto para mostrar
         string matrizTexto = "";
         for (int i = 0; i < n; i++)
         {
@@ -48,41 +133,11 @@ internal class Estacion
             {
                 matrizTexto += matrizAdyacencia[i, j] + " ";
             }
-            matrizTexto += Environment.NewLine; // Salto de línea entre filas
+            matrizTexto += Environment.NewLine;
         }
 
         // Mostrar la matriz en un MessageBox
         MessageBox.Show(matrizTexto, "Matriz de Adyacencia");
     }
-
-
-
-    public static List<Estacion> CargarDatos()
-    {
-        List<Estacion> estaciones = new List<Estacion>();
-
-        if (File.Exists(RutaArchivoJson))
-        {
-            string jsonData = File.ReadAllText(RutaArchivoJson);
-            JObject jsonObj = JObject.Parse(jsonData);
-
-            var estacionesArray = jsonObj["Estaciones"] as JArray;
-
-            if (estacionesArray != null)
-            {
-                estaciones = estacionesArray.Select(estacion => new Estacion(
-                    (string?)estacion["Nombre"] ?? string.Empty,
-                    estacion["Lineas"]?.Select(linea => (string?)linea ?? string.Empty).ToList() ?? new List<string>(),
-                    (string?)estacion["ExtraCadena"] ?? string.Empty,
-                    (int?)estacion["ExtraNumerico"] ?? 0
-                )).ToList();
-            }
-        }
-        else
-        {
-            MessageBox.Show($"No se encontró el archivo en la ruta: {RutaArchivoJson}");
-        }
-
-        return estaciones;
-    }
 }
+

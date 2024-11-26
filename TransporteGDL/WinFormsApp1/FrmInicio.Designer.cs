@@ -47,7 +47,6 @@ namespace My_FrmInicio
             quickSortToolStripMenuItem = new ToolStripMenuItem();
             imprimirMatrizToolStripMenuItem = new ToolStripMenuItem();
             busquedasToolStripMenuItem = new ToolStripMenuItem();
-            anchuraToolStripMenuItem = new ToolStripMenuItem();
             pB_Refresh = new PictureBox();
             pB_Image = new PictureBox();
             menuStrip1.SuspendLayout();
@@ -194,17 +193,10 @@ namespace My_FrmInicio
             // 
             // busquedasToolStripMenuItem
             // 
-            busquedasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anchuraToolStripMenuItem });
             busquedasToolStripMenuItem.Name = "busquedasToolStripMenuItem";
             busquedasToolStripMenuItem.Size = new Size(180, 22);
             busquedasToolStripMenuItem.Text = "Busquedas";
-            // 
-            // anchuraToolStripMenuItem
-            // 
-            anchuraToolStripMenuItem.Name = "anchuraToolStripMenuItem";
-            anchuraToolStripMenuItem.Size = new Size(180, 22);
-            anchuraToolStripMenuItem.Text = "Anchura";
-            anchuraToolStripMenuItem.Click += anchuraToolStripMenuItem_Click;
+            busquedasToolStripMenuItem.Click += busquedasToolStripMenuItem_Click;
             // 
             // pB_Refresh
             // 
@@ -269,7 +261,6 @@ namespace My_FrmInicio
         private ToolStripMenuItem agregarEstacionToolStripMenuItem;
         private ToolStripMenuItem eliminarEstacionToolStripMenuItem;
         private ToolStripMenuItem busquedasToolStripMenuItem;
-        private ToolStripMenuItem anchuraToolStripMenuItem;
         private PictureBox pB_Refresh;
         private PictureBox pB_Image;
         private ToolStripMenuItem imprimirMatrizToolStripMenuItem;

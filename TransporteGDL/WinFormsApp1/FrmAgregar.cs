@@ -10,9 +10,12 @@ namespace WinFormsApp1
 {
     public partial class FrmAgregar : Form
     {
+        public List<Estacion> Estaciones { get; set; } = new List<Estacion>();
+
         public FrmAgregar()
         {
             InitializeComponent();
+            Estaciones = SistemaTransporte.CargarDatos();
         }
 
         private void Btn_AgregarEstacion_Click(object sender, EventArgs e)
@@ -20,14 +23,12 @@ namespace WinFormsApp1
             // Obtener datos de los TextBox
             string nombreEstacion = TextB_Nombre.Text.Trim();
             string lineaEstacion = TextB_Linea.Text.Trim();
-            string extraCadena = TextB_Cadena.Text.Trim();
-            int extraNumerico = int.TryParse(TextB__Numerico.Text, out int num) ? num : 0;
-
-            // Cargar estaciones existentes
-            List<Estacion> estaciones = Estacion.CargarDatos();
+            string vecinoIzq = TextB_VecinoIzq.Text.Trim();
+            string vecinoDer = TextB_VecinoDer.Text.Trim();
 
             // Verificar si la estación ya existe
-            bool estacionExiste = estaciones.Any(e => e.Nombre.Equals(nombreEstacion, StringComparison.OrdinalIgnoreCase));
+            bool estacionExiste = Estaciones.Any(e => e.Nombre != null && e.Nombre.Equals(nombreEstacion, StringComparison.OrdinalIgnoreCase));
+
 
             if (estacionExiste)
             {
@@ -36,18 +37,17 @@ namespace WinFormsApp1
             else
             {
                 // Crear una nueva estación
-                Estacion nuevaEstacion = new Estacion(
+                var nuevaEstacion = new Estacion(
                     nombreEstacion,
                     new List<string> { lineaEstacion },
-                    extraCadena,
-                    extraNumerico
+                    new List<string> { vecinoIzq, vecinoDer }
                 );
 
                 // Agregar la nueva estación a la lista
-                estaciones.Add(nuevaEstacion);
+                Estaciones.Add(nuevaEstacion);
 
-                // Guardar estaciones actualizadas en el archivo JSON
-                GuardarEstaciones(estaciones);
+                // Guardar las estaciones actualizadas en el archivo JSON
+                GuardarEstaciones();
 
                 MessageBox.Show("Estación agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -57,23 +57,22 @@ namespace WinFormsApp1
         }
 
         // Método para guardar las estaciones en el archivo JSON
-        private void GuardarEstaciones(List<Estacion> estaciones)
+        private void GuardarEstaciones()
         {
             try
             {
                 var jsonObj = new
                 {
-                    Estaciones = estaciones.Select(est => new
+                    Estaciones = Estaciones.Select(est => new
                     {
-                        est.Nombre,
-                        est.Lineas,
-                        est.ExtraCadena,
-                        est.ExtraNumerico
+                        Nombre = est.Nombre,
+                        Lineas = est.Lineas,
+                        Conexiones = est.Conexiones
                     })
                 };
 
                 string jsonData = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-                File.WriteAllText(Estacion.RutaArchivoJson, jsonData);
+                File.WriteAllText(SistemaTransporte.RutaArchivoJson, jsonData);
             }
             catch (Exception ex)
             {
@@ -86,8 +85,8 @@ namespace WinFormsApp1
         {
             TextB_Nombre.Clear();
             TextB_Linea.Clear();
-            TextB_Cadena.Clear();
-            TextB__Numerico.Clear();
+            TextB_VecinoIzq.Clear();
+            TextB_VecinoDer.Clear();
         }
     }
 }

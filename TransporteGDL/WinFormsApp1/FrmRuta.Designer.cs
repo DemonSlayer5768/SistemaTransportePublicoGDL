@@ -35,6 +35,8 @@
             label2 = new Label();
             label3 = new Label();
             btn_Buscar = new Button();
+            cmb_Metodo = new ComboBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // cmb_Estacion_A
@@ -99,13 +101,32 @@
             // 
             // btn_Buscar
             // 
-            btn_Buscar.Location = new Point(164, 152);
+            btn_Buscar.Location = new Point(312, 165);
             btn_Buscar.Name = "btn_Buscar";
             btn_Buscar.Size = new Size(255, 56);
             btn_Buscar.TabIndex = 10;
             btn_Buscar.Text = "Buscar Ruta";
             btn_Buscar.UseVisualStyleBackColor = true;
             btn_Buscar.Click += btnBuscar_Click;
+            // 
+            // cmb_Metodo
+            // 
+            cmb_Metodo.FormattingEnabled = true;
+            cmb_Metodo.Location = new Point(32, 183);
+            cmb_Metodo.Name = "cmb_Metodo";
+            cmb_Metodo.Size = new Size(167, 23);
+            cmb_Metodo.TabIndex = 11;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Symbol", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ButtonFace;
+            label1.Location = new Point(24, 155);
+            label1.Name = "label1";
+            label1.Size = new Size(168, 25);
+            label1.TabIndex = 12;
+            label1.Text = "Escoge un metodo";
             // 
             // FrmRuta
             // 
@@ -114,6 +135,8 @@
             BackColor = SystemColors.GrayText;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(600, 650);
+            Controls.Add(label1);
+            Controls.Add(cmb_Metodo);
             Controls.Add(btn_Buscar);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -132,10 +155,6 @@
             PerformLayout();
         }
 
-        private void Btn_Buscar_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
@@ -146,5 +165,7 @@
         private Label label2;
         private Label label3;
         private Button btn_Buscar;
+        private ComboBox cmb_Metodo;
+        private Label label1;
     }
 }

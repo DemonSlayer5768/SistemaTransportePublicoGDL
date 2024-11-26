@@ -1,8 +1,6 @@
-﻿using My_FrmInicio;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,44 +9,39 @@ namespace WinFormsApp1
 {
     public partial class FrmEliminar : Form
     {
-        private List<Estacions> estaciones;
-        private string rutaArchivo = Estacion.RutaArchivoJson;
+        private List<Estacion> Estaciones;
+        private string RutaArchivoJson = SistemaTransporte.RutaArchivoJson;
 
         public FrmEliminar()
         {
             InitializeComponent();
-            estaciones = new List<Estacions>();
+            Estaciones = new List<Estacion>();
             CargarDatos_Lineas();
         }
 
         // Método para cargar líneas en cmb_Lineas
         private void CargarDatos_Lineas()
         {
-            EstacionesWrapper wrapper = LeerArchivoJson(rutaArchivo);
+            Estaciones = SistemaTransporte.CargarDatos();
 
-            if (wrapper != null && wrapper.Estaciones.Any())
+            if (Estaciones.Any())
             {
-                estaciones = wrapper.Estaciones;
                 cmb_Lineas.Items.Clear();
-                HashSet<string> lineasUnicas = new HashSet<string>();
-
-                foreach (var estacion in estaciones)
-                {
-                    foreach (var linea in estacion.Lineas)
-                    {
-                        lineasUnicas.Add(linea);
-                    }
-                }
+                var lineasUnicas = Estaciones
+                    .SelectMany(estacion => estacion.Lineas)
+                    .Distinct()
+                    .ToList();
 
                 foreach (var linea in lineasUnicas)
                 {
                     cmb_Lineas.Items.Add(linea);
                 }
+
                 cmb_Lineas.SelectedIndexChanged += (s, e) => CargarDatos_Estaciones();
             }
             else
             {
-                MessageBox.Show("No se encontraron estaciones en el archivo JSON o el archivo está vacío.");
+                MessageBox.Show("No se encontraron estaciones en el archivo JSON.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -61,155 +54,104 @@ namespace WinFormsApp1
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
             if (!string.IsNullOrEmpty(lineaSeleccionada))
             {
-                var estacionesFiltradas = estaciones
-                    .Where(estacion => estacion.Lineas.Contains(lineaSeleccionada))
+                var estacionesFiltradas = Estaciones
+                    .Where(estacion => estacion.Lineas.Contains(lineaSeleccionada) && !string.IsNullOrEmpty(estacion.Nombre)) // Filtrar nombres nulos o vacíos
                     .Select(estacion => estacion.Nombre)
                     .Distinct();
 
                 foreach (var estacion in estacionesFiltradas)
                 {
-                    cmb_Estaciones.Items.Add(estacion);
+                    if (!string.IsNullOrEmpty(estacion)) // Verificar nuevamente antes de agregar
+                    {
+                        cmb_Estaciones.Items.Add(estacion);
+                    }
                 }
+
                 cmb_Estaciones.SelectedIndex = -1;
             }
+
         }
 
-        // Método para leer el archivo JSON
-        private EstacionesWrapper LeerArchivoJson(string rutaArchivo)
-        {
-            try
-            {
-                if (File.Exists(rutaArchivo))
-                {
-                    string jsonData = File.ReadAllText(rutaArchivo);
-                    return JsonConvert.DeserializeObject<EstacionesWrapper>(jsonData) ?? new EstacionesWrapper();
-                }
-                else
-                {
-                    MessageBox.Show($"No se encontró el archivo en la ruta: {rutaArchivo}");
-                    return new EstacionesWrapper();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al leer el archivo JSON: {ex.Message}");
-                return new EstacionesWrapper();
-            }
-        }
-
-        // Método para guardar cambios en el archivo JSON
-        private void GuardarArchivoJson()
-        {
-            try
-            {
-                var wrapper = new EstacionesWrapper { Estaciones = estaciones };
-                string jsonData = JsonConvert.SerializeObject(wrapper, Formatting.Indented);
-                File.WriteAllText(rutaArchivo, jsonData);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al guardar el archivo JSON: {ex.Message}");
-            }
-        }
-
-
-        // Método para eliminar la estación seleccionada
+        // Método para eliminar la estación o línea seleccionada
         private void btn_Eliminar_Click(object sender, EventArgs e)
         {
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
             string estacionSeleccionada = cmb_Estaciones.SelectedItem?.ToString() ?? string.Empty;
 
-            if (!string.IsNullOrEmpty(lineaSeleccionada) && !string.IsNullOrEmpty(estacionSeleccionada))
+            if (string.IsNullOrEmpty(lineaSeleccionada) || string.IsNullOrEmpty(estacionSeleccionada))
             {
-                // Manejo de la eliminación
-                if (estacionSeleccionada == "Todas")
+                MessageBox.Show("Por favor selecciona una línea y una estación.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (estacionSeleccionada == "Todas")
+            {
+                DialogResult dialogResult = MessageBox.Show($"¿Deseas eliminar la línea {lineaSeleccionada} y todas sus estaciones asociadas?",
+                                                            "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
                 {
-                    DialogResult dialogResult = MessageBox.Show($"¿Desea eliminar también la línea {lineaSeleccionada}?",
-                                                                "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        estaciones.RemoveAll(estacion => estacion.Lineas.Contains(lineaSeleccionada));
-                    }
-                    else
-                    {
-                        foreach (var estacion in estaciones.Where(estacion => estacion.Lineas.Contains(lineaSeleccionada)))
-                        {
-                            estacion.Lineas.Remove(lineaSeleccionada);
-                        }
-                    }
-                    MessageBox.Show($"Estaciónes y Linea {lineaSeleccionada} eliminadas correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    // Eliminar estaciones asociadas a la línea
+                    Estaciones.RemoveAll(estacion => estacion.Lineas.Contains(lineaSeleccionada));
+                    MessageBox.Show($"La línea {lineaSeleccionada} y sus estaciones asociadas fueron eliminadas.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show($"¿Deseas eliminar la estación {estacionSeleccionada} de la línea {lineaSeleccionada}?",
+                                                            "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
                 {
-                    // Eliminar la estación seleccionada
-                    DialogResult dialogResult = MessageBox.Show($"¿Desea eliminar la estación: {estacionSeleccionada}?",
-                                                                "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    var estacionAEliminar = Estaciones.FirstOrDefault(estacion =>
+                        estacion.Nombre == estacionSeleccionada && estacion.Lineas.Contains(lineaSeleccionada));
 
-                    if (dialogResult == DialogResult.Yes)
+                    if (estacionAEliminar != null)
                     {
-                        var estacionAEliminar = estaciones.FirstOrDefault(estacion =>
-                                                    estacion.Nombre == estacionSeleccionada && estacion.Lineas.Contains(lineaSeleccionada));
-
-                        if (estacionAEliminar != null)
+                        estacionAEliminar.Lineas.Remove(lineaSeleccionada);
+                        if (!estacionAEliminar.Lineas.Any())
                         {
-                            estacionAEliminar.Lineas.Remove(lineaSeleccionada);
-
-                            if (!estacionAEliminar.Lineas.Any())
-                            {
-                                estaciones.Remove(estacionAEliminar);
-                            }
+                            Estaciones.Remove(estacionAEliminar);
                         }
+                        MessageBox.Show($"La estación {estacionSeleccionada} fue eliminada de la línea {lineaSeleccionada}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    MessageBox.Show("Estación eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
+            }
 
-                GuardarArchivoJson(); // Guardar cambios en el archivo JSON
+            GuardarArchivoJson();
+            RecargarDatos();
+        }
 
-                // Limpiar los ComboBox
-                cmb_Lineas.Items.Clear();
-                cmb_Estaciones.Items.Clear();
+        // Método para guardar los cambios en el archivo JSON
+        private void GuardarArchivoJson()
+        {
+            try
+            {
+                var jsonObj = new
+                {
+                    Estaciones = Estaciones.Select(est => new
+                    {
+                        est.Nombre,
+                        est.Lineas,
+                        est.Conexiones
+                    })
+                };
 
-                // Recargar líneas después de la eliminación
-                CargarDatos_Lineas(); // Cargar líneas para actualizar cmb_Lineas
-
-                // Asegúrate de que los ComboBox estén deseleccionados
-                cmb_Lineas.SelectedIndex = -1;
-                cmb_Estaciones.SelectedIndex = -1;
-
+                string jsonData = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
+                File.WriteAllText(RutaArchivoJson, jsonData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar los cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void FrmEliminar_Load(object sender, EventArgs e)
+        // Método para recargar los datos en los ComboBox
+        private void RecargarDatos()
         {
-
+            cmb_Lineas.Items.Clear();
+            cmb_Estaciones.Items.Clear();
+            CargarDatos_Lineas();
         }
-    }
-
-    // Clase Estacion
-    public class Estacions
-    {
-        public string Nombre { get; set; }
-        public List<string> Lineas { get; set; }
-        public string ExtraCadena { get; set; }
-        public int ExtraNumerico { get; set; }
-
-        public Estacions(string nombre, List<string> lineas, string extraCadena, int extraNumerico)
-        {
-            Nombre = nombre;
-            Lineas = lineas;
-            ExtraCadena = extraCadena;
-            ExtraNumerico = extraNumerico;
-        }
-    }
-
-    // Clase envoltura para deserializar el JSON
-    public class EstacionesWrapper
-    {
-        public List<Estacions> Estaciones { get; set; } = new List<Estacions>();
-
-        public EstacionesWrapper() { }
     }
 }

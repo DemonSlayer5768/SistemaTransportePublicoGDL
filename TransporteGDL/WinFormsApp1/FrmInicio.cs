@@ -12,16 +12,18 @@ namespace My_FrmInicio
 
     public partial class FrmInicio : Form
     {
-        private List<Estacion> estaciones;
+        public List<Estacion> Estaciones { get; set; } = new List<Estacion>();
 
         public FrmInicio()
         {
             InitializeComponent();
 
-            // Cargar las estaciones directamente desde la clase Estacion
-            estaciones = Estacion.CargarDatos();
+            // Cargar las Estaciones directamente desde la clase Estacion
 
+            Estaciones = SistemaTransporte.CargarDatos();
             InicializarComboBox();
+
+
         }
         //inicializa el comboBox lineas
         private void InicializarComboBox()
@@ -29,13 +31,15 @@ namespace My_FrmInicio
             cmb_Lineas.Items.Clear();
             cmb_Lineas.Items.Add("Todas");
 
-            var lineasUnicas = estaciones.SelectMany(est => est.Lineas).Distinct().OrderBy(linea => linea);
+            var lineasUnicas = Estaciones.SelectMany(est => est.Lineas).Distinct().OrderBy(linea => linea);
             foreach (var linea in lineasUnicas)
             {
                 cmb_Lineas.Items.Add(linea);
             }
             cmb_Lineas.SelectedIndex = 0;
         }
+
+
         //boton imprimir las estaciones
         private void btn_Estaciones_Click(object sender, EventArgs e)
         {
@@ -43,8 +47,8 @@ namespace My_FrmInicio
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
             List<Estacion> estacionesParaMostrar = lineaSeleccionada == "Todas"
-                ? new List<Estacion>(estaciones)
-                : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+                ? new List<Estacion>(Estaciones)
+                : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
             foreach (var estacion in estacionesParaMostrar)
             {
@@ -59,25 +63,45 @@ namespace My_FrmInicio
         //boton recargar datos
         private void pB_Refresh_Click(object sender, EventArgs e)
         {
-            estaciones = Estacion.CargarDatos(); // Recargar estaciones
+            Estaciones = SistemaTransporte.CargarDatos(); // Recargar estaciones
             listBox_Estaciones.Items.Clear();
+            InicializarComboBox();
 
         }
+        // private void btn_Estaciones_Click(object sender, EventArgs e)
+        // {
+        //     listBox_Estaciones.Items.Clear();
+
+        //     string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
+
+        //     List<Estacion> EstacionesParaMostrar = lineaSeleccionada == "Todas"
+        //         ? new List<Estacion>(Estaciones)
+        //         : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+
+        //     foreach (var estacion in EstacionesParaMostrar)
+        //     {
+        //         listBox_Estaciones.Items.Add(estacion.Nombre ?? string.Empty);
+        //     }
+
+        //     if (!EstacionesParaMostrar.Any())
+        //     {
+        //         listBox_Estaciones.Items.Add("No se encontraron Estaciones en esta línea.");
+        //     }
+        // }
+
+        // //boton recargar datos
+        // private void pB_Refresh_Click(object sender, EventArgs e)
+        // {
+        //     Estaciones = SistemaTransporte.CargarDatos(); // Recargar Estaciones
+        //     listBox_Estaciones.Items.Clear();
+
+        // }
         //abrir form agregar estacion
         private void agregarEstacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Crear una instancia del nuevo formulario (por ejemplo, Form2)
             FrmAgregar nuevoForm = new FrmAgregar();
-
-            // Ocultar el formulario actual (Form1)
             this.Hide();
-
-            // Mostrar el nuevo formulario
             nuevoForm.Show();
-
-            // nuevoForm.ShowDialog();
-
-            // Para volver a mostrar el formulario actual cuando se cierre el nuevo:
             nuevoForm.FormClosed += (s, args) => this.Show();
         }
         //abrir form eliminar estacion
@@ -88,30 +112,22 @@ namespace My_FrmInicio
             nuevoForm.Show();
             nuevoForm.FormClosed += (s, args) => this.Show();
         }
-        //abrir form busqueda anchura
-        private void anchuraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmRuta nuevoForm = new FrmRuta();
-            //this.Hide();
-            nuevoForm.Show();
-            nuevoForm.FormClosed += (s, args) => this.Show();
-        }
         // imprimir matriz
         private void imprimirMatrizToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-                ? new List<Estacion>(estaciones)
-                : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+            List<Estacion> EstacionesSeleccionadas = lineaSeleccionada == "Todas"
+                ? new List<Estacion>(Estaciones)
+                : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            if (estacionesSeleccionadas.Any())
+            if (EstacionesSeleccionadas.Any())
             {
-                Estacion.ConstruirMatrizAdyacencia(estacionesSeleccionadas);
+                Matriz.ConstruirMatrizAdyacencia(EstacionesSeleccionadas);
             }
             else
             {
-                MessageBox.Show("No hay estaciones para la línea seleccionada.");
+                MessageBox.Show("No hay Estaciones para la línea seleccionada.");
             }
         }
         // Metodos de Ordenamientos
@@ -120,41 +136,42 @@ namespace My_FrmInicio
             listBox_Estaciones.Items.Clear();
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-               ? new List<Estacion>(estaciones)
-               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+            List<Estacion> EstacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(Estaciones)
+               : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            Ordenamientos.SortUsingInsertion(estacionesSeleccionadas);
+            Ordenamientos.SortUsingInsertion(EstacionesSeleccionadas);
 
-            foreach (var estacion in estacionesSeleccionadas)
+            foreach (var estacion in EstacionesSeleccionadas)
             {
                 listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
             }
 
-            if (!estacionesSeleccionadas.Any())
+            if (!EstacionesSeleccionadas.Any())
             {
-                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+                listBox_Estaciones.Items.Add("No se encontraron Estaciones en esta línea.");
             }
         }
+
         private void burbujaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             listBox_Estaciones.Items.Clear();
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-               ? new List<Estacion>(estaciones)
-               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+            List<Estacion> EstacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(Estaciones)
+               : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            Ordenamientos.SortUsingBubbleSort(estacionesSeleccionadas);
+            Ordenamientos.SortUsingBubbleSort(EstacionesSeleccionadas);
 
-            foreach (var estacion in estacionesSeleccionadas)
+            foreach (var estacion in EstacionesSeleccionadas)
             {
                 listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
             }
 
-            if (!estacionesSeleccionadas.Any())
+            if (!EstacionesSeleccionadas.Any())
             {
-                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+                listBox_Estaciones.Items.Add("No se encontraron Estaciones en esta línea.");
             }
         }
         private void seleccionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -162,20 +179,20 @@ namespace My_FrmInicio
             listBox_Estaciones.Items.Clear();
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-               ? new List<Estacion>(estaciones)
-               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+            List<Estacion> EstacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(Estaciones)
+               : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            Ordenamientos.SortUsingSelection(estacionesSeleccionadas);
+            Ordenamientos.SortUsingSelection(EstacionesSeleccionadas);
 
-            foreach (var estacion in estacionesSeleccionadas)
+            foreach (var estacion in EstacionesSeleccionadas)
             {
                 listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
             }
 
-            if (!estacionesSeleccionadas.Any())
+            if (!EstacionesSeleccionadas.Any())
             {
-                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+                listBox_Estaciones.Items.Add("No se encontraron Estaciones en esta línea.");
             }
         }
         private void mezclaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,20 +200,20 @@ namespace My_FrmInicio
             listBox_Estaciones.Items.Clear();
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-               ? new List<Estacion>(estaciones)
-               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+            List<Estacion> EstacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(Estaciones)
+               : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            Ordenamientos.SortUsingMerge(estacionesSeleccionadas);
+            Ordenamientos.SortUsingMerge(EstacionesSeleccionadas);
 
-            foreach (var estacion in estacionesSeleccionadas)
+            foreach (var estacion in EstacionesSeleccionadas)
             {
                 listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
             }
 
-            if (!estacionesSeleccionadas.Any())
+            if (!EstacionesSeleccionadas.Any())
             {
-                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+                listBox_Estaciones.Items.Add("No se encontraron Estaciones en esta línea.");
             }
         }
         private void quickSortToolStripMenuItem_Click(object sender, EventArgs e)
@@ -204,23 +221,30 @@ namespace My_FrmInicio
             listBox_Estaciones.Items.Clear();
             string lineaSeleccionada = cmb_Lineas.SelectedItem?.ToString() ?? string.Empty;
 
-            List<Estacion> estacionesSeleccionadas = lineaSeleccionada == "Todas"
-               ? new List<Estacion>(estaciones)
-               : estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
+            List<Estacion> EstacionesSeleccionadas = lineaSeleccionada == "Todas"
+               ? new List<Estacion>(Estaciones)
+               : Estaciones.Where(est => est.Lineas.Contains(lineaSeleccionada)).ToList();
 
-            Ordenamientos.SortUsingQuickSort(estacionesSeleccionadas);
+            Ordenamientos.SortUsingQuickSort(EstacionesSeleccionadas);
 
-            foreach (var estacion in estacionesSeleccionadas)
+            foreach (var estacion in EstacionesSeleccionadas)
             {
                 listBox_Estaciones.Items.Add($" - {estacion.Nombre}");
             }
 
-            if (!estacionesSeleccionadas.Any())
+            if (!EstacionesSeleccionadas.Any())
             {
-                listBox_Estaciones.Items.Add("No se encontraron estaciones en esta línea.");
+                listBox_Estaciones.Items.Add("No se encontraron Estaciones en esta línea.");
             }
         }
 
+        private void busquedasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmRuta nuevoForm = new FrmRuta();
+            // this.Hide();
+            nuevoForm.Show();
+            nuevoForm.FormClosed += (s, args) => this.Show();
+        }
     }
 
 }
