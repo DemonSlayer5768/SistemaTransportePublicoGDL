@@ -53,204 +53,312 @@ public class Algoritmos_Busqueda
         return recorrido; // Retornamos el recorrido más corto
     }
 
-
-    // Función para el algoritmo de Prim
-    public static List<string> Prim(GrafoEstaciones grafo, string inicio, string destino)
+    public static void agregar_Arista(int[][] matriz, int i, int j, int peso)
     {
-        var arbolExpansion = new List<string>(); // Lista para almacenar el recorrido del árbol de expansión
-        var visitados = new HashSet<string>();   // Conjunto para marcar las Estaciones visitadas
-        var colasPrioridad = new SortedSet<(int, string)>(Comparer<(int, string)>.Create((x, y) => x.Item1 == y.Item1 ? x.Item2.CompareTo(y.Item2) : x.Item1.CompareTo(y.Item1)));
-
-        // Empezamos desde la estación de inicio
-        visitados.Add(inicio);
-        arbolExpansion.Add(inicio);
-
-        // Se añaden las conexiones de la estación de inicio con peso 1
-        foreach (var vecino in grafo.ObtenerEstacion(inicio)?.Conexiones ?? new List<string>())
+        // Verificar si los índices son válidos
+        if (i < 0 || j < 0 || i >= matriz.Length || j >= matriz.Length)
         {
-            colasPrioridad.Add((1, vecino)); // Agregar vecinos con peso 1
+            throw new ArgumentException("Los índices de la estación no son válidos.");
         }
 
-        while (colasPrioridad.Count > 0)
+        // Asignar el peso en la posición (i, j) y (j, i) ya que es un grafo no dirigido
+        matriz[i][j] = peso;
+        matriz[j][i] = peso;
+    }
+
+
+
+    // Función para el algoritmo de Prim
+    public static void Prim(int[][] matrizAdyacencia)
+    {
+        int n = 5; // Número de estaciones (A, B, C, D, E)
+        int[] clave = new int[n];  // Guardará el peso mínimo de cada estación
+        bool[] visitado = new bool[n];  // Marca las estaciones visitadas
+        int[] padre = new int[n];  // Guardará el nodo anterior de cada estación en el AEM
+
+        // Inicializar los valores
+        for (int i = 0; i < n; i++)
         {
-            // Tomamos la estación con el menor peso (más cercano)
-            var (peso, estacion) = colasPrioridad.First();
-            colasPrioridad.Remove((peso, estacion));
+            clave[i] = int.MaxValue; // Inicializar con un valor muy alto
+            visitado[i] = false; // Inicializar como no visitado
+            padre[i] = -1; // No hay nodo anterior aún
+        }
 
-            // Si no hemos visitado la estación, la visitamos
-            if (!visitados.Contains(estacion))
+        clave[0] = 0; // Comenzamos desde la estación A (índice 0)
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            // Seleccionar el nodo con el valor mínimo de clave
+            int u = MinClave(clave, visitado, n);
+            visitado[u] = true; // Marcar el nodo como visitado
+
+            // Actualizar los valores de las estaciones adyacentes
+            for (int v = 0; v < n; v++)
             {
-                visitados.Add(estacion);
-                arbolExpansion.Add(estacion);
-
-                // Si llegamos al destino, terminamos la búsqueda
-                if (estacion == destino)
+                if (matrizAdyacencia[u][v] != 0 && !visitado[v] && matrizAdyacencia[u][v] < clave[v])
                 {
-                    Console.WriteLine(string.Join(" -> ", arbolExpansion)); // Mostrar el recorrido
-                    break; // Detener la búsqueda
-                }
-
-                // Agregamos las conexiones de la estación actual al conjunto de prioridades
-                foreach (var vecino in grafo.ObtenerEstacion(estacion)?.Conexiones ?? new List<string>())
-                {
-                    if (!visitados.Contains(vecino))
-                    {
-                        colasPrioridad.Add((1, vecino)); // Añadimos el peso constante
-                    }
+                    clave[v] = matrizAdyacencia[u][v];
+                    padre[v] = u;
                 }
             }
         }
 
-        return arbolExpansion;
+        // Mostrar el árbol de expansión mínima
+        string resultado = "Árbol de Expansión Mínima (Prim):\n";
+        for (int i = 1; i < n; i++)
+        {
+            resultado += $"Estación {Convert.ToChar('A' + i)} - Estación {Convert.ToChar('A' + padre[i])} con peso {matrizAdyacencia[i][padre[i]]}\n";
+        }
+
+        // Mostrar toda la matriz de adyacencia
+        string matrizTexto = "Matriz de Adyacencia:\n";
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrizTexto += matrizAdyacencia[i][j] + "\t";
+            }
+            matrizTexto += "\n";
+        }
+
+        // Mostrar todo en un solo MessageBox
+        MessageBox.Show(resultado + "\n" + matrizTexto, "Resultado de Prim", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
+
+
+    // Función para encontrar el nodo con la clave mínima
+    private static int MinClave(int[] clave, bool[] visitado, int n)
+    {
+        int min = int.MaxValue;
+        int minIndex = -1;
+
+        for (int v = 0; v < n; v++)
+        {
+            if (!visitado[v] && clave[v] < min)
+            {
+                min = clave[v];
+                minIndex = v;
+            }
+        }
+
+        return minIndex;
+    }
+
 
 
 
     // Función para el algoritmo de Kruskal
-    public static List<(string, string)> Kruskal(GrafoEstaciones grafo)
+    public static void Kruskal(int[][] matrizAdyacencia)
     {
-        var aristas = new List<(string, string, int)>();
-        foreach (var estacion in grafo.Estaciones)
+        int n = matrizAdyacencia.Length;  // Número de estaciones
+        List<Edge> aristas = new List<Edge>();  // Lista para almacenar las aristas
+
+        // Paso 1: Crear una lista de todas las aristas con sus pesos
+        for (int i = 0; i < n; i++)
         {
-            foreach (var conexion in estacion.Conexiones)
+            for (int j = i + 1; j < n; j++)  // Evitar duplicar aristas, ya que la matriz es simétrica
             {
-                aristas.Add((estacion.Nombre ?? string.Empty, conexion, 1)); // Agregamos la conexión con un peso de 1
+                if (matrizAdyacencia[i][j] != 0)  // Si hay una arista (peso != 0)
+                {
+                    aristas.Add(new Edge(i, j, matrizAdyacencia[i][j]));  // Guardamos la arista
+                }
             }
         }
 
-        // Ordenamos las aristas por peso
-        aristas.Sort((a, b) => a.Item3.CompareTo(b.Item3));
+        // Paso 2: Ordenar las aristas por peso (de menor a mayor)
+        aristas.Sort((a, b) => a.Peso.CompareTo(b.Peso));
 
-        var conjuntoDisjoint = new Dictionary<string, string>(); // Estructura para encontrar el conjunto (conjunto disjunto)
-        foreach (var estacion in grafo.Estaciones)
-        {
-            conjuntoDisjoint[estacion.Nombre ?? string.Empty] = estacion.Nombre ?? string.Empty; // Inicializamos cada estación como su propio representante
-        }
+        // Paso 3: Inicializar el conjunto disjunto
+        DisjointSet ds = new DisjointSet(n);
 
-        // Función para encontrar el representante de un conjunto
-        string Buscar(string estacion)
-        {
-            if (conjuntoDisjoint[estacion] != estacion)
-            {
-                conjuntoDisjoint[estacion] = Buscar(conjuntoDisjoint[estacion]);
-            }
-            return conjuntoDisjoint[estacion];
-        }
+        List<Edge> aem = new List<Edge>();  // Lista para el árbol de expansión mínima
 
-        // Función para unir dos conjuntos
-        void Unir(string estacion1, string estacion2)
-        {
-            var raiz1 = Buscar(estacion1);
-            var raiz2 = Buscar(estacion2);
-            if (raiz1 != raiz2)
-            {
-                conjuntoDisjoint[raiz1] = raiz2;
-            }
-        }
-
-        // Algoritmo de Kruskal
-        var arbolExpansión = new List<(string, string)>();
+        // Paso 4: Procesar las aristas en orden creciente
         foreach (var arista in aristas)
         {
-            if (Buscar(arista.Item1) != Buscar(arista.Item2))
+            int root1 = ds.Find(arista.Estacion1);
+            int root2 = ds.Find(arista.Estacion2);
+
+            // Si no están en el mismo conjunto (no forman un ciclo), las unimos
+            if (root1 != root2)
             {
-                Unir(arista.Item1, arista.Item2);
-                arbolExpansión.Add((arista.Item1, arista.Item2));
+                aem.Add(arista);  // Agregar la arista al AEM
+                ds.Union(root1, root2);  // Unir los conjuntos de las estaciones
             }
         }
 
-        // Imprimir las conexiones
-        foreach (var arista in arbolExpansión)
+        // Mostrar el árbol de expansión mínima
+        string resultado = "Árbol de Expansión Mínima (Kruskal):\n";
+        foreach (var arista in aem)
         {
-            Console.WriteLine($"{arista.Item1} -> {arista.Item2}");
+            resultado += $"Estación {Convert.ToChar('A' + arista.Estacion1)} - Estación {Convert.ToChar('A' + arista.Estacion2)} con peso {arista.Peso}\n";
         }
 
-        return arbolExpansión;
+        // Mostrar toda la matriz de adyacencia
+        string matrizTexto = "Matriz de Adyacencia:\n";
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrizTexto += matrizAdyacencia[i][j] + "\t";
+            }
+            matrizTexto += "\n";
+        }
+
+        // Mostrar todo en un solo MessageBox
+        MessageBox.Show(resultado + "\n" + matrizTexto, "Resultado de Kruskal", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
+
+
+    // Clase que representa una arista
+    public class Edge
+    {
+        public int Estacion1 { get; set; }
+        public int Estacion2 { get; set; }
+        public int Peso { get; set; }
+
+        public Edge(int estacion1, int estacion2, int peso)
+        {
+            Estacion1 = estacion1;
+            Estacion2 = estacion2;
+            Peso = peso;
+        }
+    }
+
+    // Clase para el conjunto disjunto (Union-Find)
+    public class DisjointSet
+    {
+        private int[] parent;
+        private int[] rank;
+
+        public DisjointSet(int size)
+        {
+            parent = new int[size];
+            rank = new int[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                parent[i] = i;  // Cada estación es su propio padre inicialmente
+                rank[i] = 0;    // Inicializamos el rango en 0
+            }
+        }
+
+        // Encontrar el representante del conjunto
+        public int Find(int x)
+        {
+            if (parent[x] != x)
+            {
+                parent[x] = Find(parent[x]);  // Compresión de caminos
+            }
+            return parent[x];
+        }
+
+        // Unir dos conjuntos
+        public void Union(int x, int y)
+        {
+            int rootX = Find(x);
+            int rootY = Find(y);
+
+            if (rootX != rootY)
+            {
+                // Unir los conjuntos, con el de mayor rango como raíz
+                if (rank[rootX] > rank[rootY])
+                {
+                    parent[rootY] = rootX;
+                }
+                else if (rank[rootX] < rank[rootY])
+                {
+                    parent[rootX] = rootY;
+                }
+                else
+                {
+                    parent[rootY] = rootX;
+                    rank[rootX]++;  // Aumentar el rango
+                }
+            }
+        }
+    }
+
 
 
     // Función para Dijkstra (simplificado)
-    public static List<string> Dijkstra(GrafoEstaciones grafo, string inicio, string destino)
+    // Función para Dijkstra (simplificado)
+    public static void Dijkstra(int[][] matrizAdyacencia, int estacionInicio)
     {
-        var distancias = new Dictionary<string, int>(); // Almacena la distancia más corta desde el inicio a cada estación
-        var padres = new Dictionary<string, string>(); // Almacena la estación previa para reconstruir el camino
-        var visitados = new HashSet<string>(); // Conjunto de Estaciones visitadas
-        var cola = new SortedSet<(int distancia, string estacion)>(); // Cola de prioridad con las Estaciones y sus distancias
+        int n = matrizAdyacencia.Length;  // Número de estaciones
+        int[] distancias = new int[n];  // Arreglo de distancias mínimas
+        bool[] visitado = new bool[n];  // Arreglo para marcar las estaciones visitadas
 
-        // Inicializar distancias y agregar la estación de inicio
-        foreach (var estacion in grafo.Estaciones)
+        // Inicializamos las distancias: a la estación de inicio 0, a las demás infinito
+        for (int i = 0; i < n; i++)
         {
-            string nombreEstacion = estacion.Nombre ?? string.Empty; // Si el nombre es null, asignamos una cadena vacía
-            if (string.IsNullOrEmpty(nombreEstacion))
-            {
-                Console.WriteLine("Advertencia: Se encontró una estación con un nombre vacío o nulo.");
-                continue; // Saltamos esta estación si el nombre es inválido
-            }
-            distancias[nombreEstacion] = int.MaxValue; // Asignamos un valor inicial infinito
+            distancias[i] = int.MaxValue;  // Distancia infinita
+            visitado[i] = false;  // Ninguna estación está visitada
         }
+        distancias[estacionInicio] = 0;  // La distancia a la estación de inicio es 0
 
-        if (!distancias.ContainsKey(inicio) || !distancias.ContainsKey(destino))
+        // Ejecutamos el algoritmo de Dijkstra
+        for (int i = 0; i < n - 1; i++)  // Se repite n-1 veces, ya que no necesitamos más
         {
-            Console.WriteLine("Error: La estacion de inicio o destino no se encuentra en el grafo.");
-            return new List<string>(); // Si no se encuentran las Estaciones, devolvemos una lista vacía
-        }
-
-        distancias[inicio] = 0; // La distancia al nodo inicial es 0
-        cola.Add((0, inicio)); // Añadimos la estación de inicio a la cola
-
-        while (cola.Count > 0)
-        {
-            // Extraemos la estación con la distancia más corta
-            var (distancia, estacionActual) = cola.Min;
-            cola.Remove(cola.Min);
-
-            if (estacionActual == destino)
+            // Paso 1: Seleccionar la estación no visitada con la distancia más corta
+            int u = -1;
+            int distanciaMinima = int.MaxValue;
+            for (int j = 0; j < n; j++)
             {
-                // Si hemos llegado al destino, podemos reconstruir el camino
-                var camino = new List<string>();
-                string actual = destino;
-                while (actual != null)
+                if (!visitado[j] && distancias[j] < distanciaMinima)
                 {
-                    camino.Insert(0, actual); // Insertamos al inicio del camino
-                    if (padres.ContainsKey(actual))
-                    {
-                        actual = padres[actual];
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    u = j;
+                    distanciaMinima = distancias[j];
                 }
-
-                // Imprimir el camino más corto
-                Console.WriteLine("Camino más corto:");
-                Console.WriteLine(string.Join(" -> ", camino)); // Imprime el camino aquí
-                return camino; // Devolvemos el camino
             }
 
-            // Marcamos la estación actual como visitada
-            visitados.Add(estacionActual);
+            // Marcar la estación u como visitada
+            visitado[u] = true;
 
-            // Exploramos las conexiones (vecinos)
-            foreach (var vecino in grafo.ObtenerEstacion(estacionActual)?.Conexiones ?? new List<string>())
+            // Paso 2: Actualizar las distancias de las estaciones vecinas
+            for (int v = 0; v < n; v++)
             {
-                if (!visitados.Contains(vecino))
+                // Si hay una arista entre u y v, y v no ha sido visitada
+                if (matrizAdyacencia[u][v] != 0 && !visitado[v])
                 {
-                    var nuevaDistancia = distancias[estacionActual] + 1; // Suponemos que todas las conexiones tienen peso 1
-                    if (nuevaDistancia < distancias[vecino])
+                    int nuevaDistancia = distancias[u] + matrizAdyacencia[u][v];
+                    if (nuevaDistancia < distancias[v])
                     {
-                        distancias[vecino] = nuevaDistancia;
-                        padres[vecino] = estacionActual; // Guardamos el camino para reconstruirlo
-                        cola.Add((nuevaDistancia, vecino)); // Añadimos el vecino a la cola de prioridad
+                        distancias[v] = nuevaDistancia;  // Actualizamos la distancia mínima
                     }
                 }
             }
         }
 
-        // Si no se encuentra el destino
-        Console.WriteLine("No se pudo encontrar un camino.");
-        return new List<string>(); // Devolvemos una lista vacía si no se encuentra el camino
+        // Mostrar las distancias mínimas desde la estación de inicio
+        string resultado = $"Distancias mínimas desde la estación {Convert.ToChar('A' + estacionInicio)}:\n";
+        for (int i = 0; i < n; i++)
+        {
+            if (distancias[i] == int.MaxValue)
+            {
+                resultado += $"Estación {Convert.ToChar('A' + i)}: Inalcanzable\n";
+            }
+            else
+            {
+                resultado += $"Estación {Convert.ToChar('A' + i)}: {distancias[i]}\n";
+            }
+        }
+
+        // Mostrar toda la matriz de adyacencia
+        string matrizTexto = "Matriz de Adyacencia:\n";
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrizTexto += matrizAdyacencia[i][j] + "\t";
+            }
+            matrizTexto += "\n";
+        }
+
+        // Mostrar todo en un solo MessageBox
+        MessageBox.Show(resultado + "\n" + matrizTexto, "Resultado de Dijkstra", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
+
 
 }
 

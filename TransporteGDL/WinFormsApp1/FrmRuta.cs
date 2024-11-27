@@ -43,23 +43,14 @@ namespace WinFormsApp1
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            // Verificar que ambos ComboBox tengan una selección
-            if (cmb_Estacion_A.SelectedItem == null || cmb_Estacion_B.SelectedItem == null)
-            {
-                MessageBox.Show("Por favor, selecciona una estación de partida y una estación de destino.", "Error");
-                return;
-            }
-
             string estacionA = cmb_Estacion_A.SelectedItem?.ToString() ?? string.Empty;
             string estacionB = cmb_Estacion_B.SelectedItem?.ToString() ?? string.Empty;
-
-
             // Ejecutar BFS para encontrar el camino más corto
-            BuscarCaminoMasCorto(estacionA, estacionB);
+            algoritmosBusqueda(estacionA, estacionB);
 
         }
 
-        public void BuscarCaminoMasCorto(string estacionA, string estacionB)
+        public void algoritmosBusqueda(string estacionA, string estacionB)
         {
             // Cargar datos y construir el grafo
             List<Estacion> Estaciones = SistemaTransporte.CargarDatos();
@@ -80,39 +71,63 @@ namespace WinFormsApp1
             // Obtener el método seleccionado
             string metodoSeleccionado = cmb_Metodo.SelectedItem.ToString() ?? string.Empty;
 
-            // Ejecutar el algoritmo correspondiente
-            List<string> recorrido = new List<string>();
-            switch (metodoSeleccionado)
+
+
+            // Verificamos si el método seleccionado es "Anchura"
+            if (metodoSeleccionado == "Anchura")
             {
-                case "Anchura":
-                    recorrido = Algoritmos_Busqueda.BFS(grafo, estacionInicio, estacionDestino);
-                    break;
-
-                case "Prim":
-                    List<string> recorridoPrim = Algoritmos_Busqueda.Prim(grafo, estacionInicio, estacionDestino);
-                    break;
-
-                case "Kruskal":
-                    List<(string, string)> arbolKruskal = Algoritmos_Busqueda.Kruskal(grafo);
-                    break;
-
-                case "Dijkstra":
-                    MessageBox.Show("Método Dijkstra no está implementado aún.", "Información");
-                    break;
-
-                default:
-                    List<string> Dijkstra = Algoritmos_Busqueda.Dijkstra(grafo, estacionInicio, estacionDestino);
-                    return;
-            }
-
-            // Mostrar el resultado del recorrido
-            if (recorrido.Count > 0)
-            {
-                MostrarCaminoEnListView(recorrido);
+                // Ejecutar el algoritmo correspondiente
+                List<string> recorrido = new List<string>();
+                recorrido = Algoritmos_Busqueda.BFS(grafo, estacionInicio, estacionDestino);
+                // Mostrar el resultado del recorrido
+                if (recorrido.Count > 0)
+                {
+                    MostrarCaminoEnListView(recorrido);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró un camino entre las Estaciones seleccionadas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("No se encontró un camino entre las Estaciones seleccionadas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Definir la matriz de adyacencia (5 estaciones: A, B, C, D, E)
+                int[][] matrizAdyacencia = new int[5][];
+                for (int i = 0; i < 5; i++)
+                {
+                    matrizAdyacencia[i] = new int[5];  // Inicializa una matriz 5x5
+                }
+
+                // Luego, agregar las aristas con los pesos
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 0, 1, 5); // A - B
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 0, 2, 7); // A - C
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 0, 4, 2); // A - E
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 1, 3, 6); // B - D
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 1, 4, 3); // B - E
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 3, 4, 5); // D - E
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 2, 3, 4); // C - D
+                Algoritmos_Busqueda.agregar_Arista(matrizAdyacencia, 2, 4, 4); // C - E
+
+
+
+                switch (metodoSeleccionado)
+                {
+                    case "Prim":
+                        Algoritmos_Busqueda.Prim(matrizAdyacencia);
+                        break;
+
+                    case "Kruskal":
+                        Algoritmos_Busqueda.Kruskal(matrizAdyacencia);
+                        break;
+
+                    case "Dijkstra":
+                        Algoritmos_Busqueda.Dijkstra(matrizAdyacencia, 0);
+                        break;
+
+                    default:
+                        MessageBox.Show("Seleccione una opcion valida!");
+                        return;
+                }
             }
         }
 
